@@ -5,6 +5,8 @@
 Motor de **simulación por ventanas deslizantes** sobre futuros USDT (precio + funding) con gestión de apalancamiento por equity, reglas de señal opcionales en JSON y barridos reproducibles. Pensado para **investigación cuantitativa**, no como señal de trading en vivo.
 
 [![CI](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%20|%203.12-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Aviso legal:** esto es software experimental. Los resultados históricos no garantizan rendimiento futuro. Usalo bajo tu propio criterio y cumplimiento normativo.
 
@@ -16,6 +18,7 @@ Motor de **simulación por ventanas deslizantes** sobre futuros USDT (precio + f
 - **Contrato explícito:** métricas (`p_win_terminal`, `p_ruin`, walk-forward) y docs del dataset en [`docs/DATASET.md`](docs/DATASET.md).
 - **Extensible:** reglas de filtro en JSON (`--signal-config`), spec tipo ce-optimize en YAML de ejemplo.
 - **Honestidad metodológica:** tabúes y holdout documentados en `docs/brainstorms/` (evitar curve-fitting descuidado).
+- **Índice de docs:** [`docs/README.md`](docs/README.md) (tutorial, dataset, PyPI, ejemplos).
 
 Lo que **no** promete: edge rentable listo para copiar. Open source exitoso aquí = herramienta clara + datos armables + CI verde.
 
@@ -100,7 +103,7 @@ Para material comercial usá otro repositorio o Releases sin mezclarlo con el c�
 
 - **Topics** sugeridos: `quantitative-finance`, `backtesting`, `binance`, `cryptocurrency`, `numpy`, `python`, `research`, `futures`.
 - **About**: una línea que diga “sliding-window futures backtest (BTC/ETH) + optional signal optimizer”; link a docs/DATASET.
-- Activar **Discussions** si querés Q&A sin ruido en Issues.
+- **Discussions** habilitadas en GitHub para Q&A sin ruido en Issues.
 - URLs del proyecto ya apuntan a [`emilianob-ux/SISTEMA-OPTIMIZACION-MAT`](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT) en README y `pyproject.toml`.
 - **Stars externos**: post corto en X/LinkedIn/Medium con el quickstart + “no es asesoramiento financiero”.
 

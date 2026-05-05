@@ -27,6 +27,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt -r requirements-dev.txt
 
+      - name: Ruff lint
+        run: ruff check .
+
       - name: Synthetic dataset
         run: python scripts/bootstrap_synthetic_candles_db.py
 

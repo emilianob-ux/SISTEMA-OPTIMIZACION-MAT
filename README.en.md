@@ -5,6 +5,8 @@
 → **Spanish (canonical copy):** [README.md](README.md)
 
 [![CI](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%20|%203.12-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Disclaimer:** experimental software. Past performance does not imply future results. Use at your own risk and in compliance with applicable regulation.
 
@@ -16,6 +18,7 @@
 - **Explicit contract:** metrics (`p_win_terminal`, `p_ruin`, walk-forward) and dataset docs in [`docs/DATASET.md`](docs/DATASET.md).
 - **Extensible:** filter rules in JSON (`--signal-config`), sample ce-optimize-style YAML spec.
 - **Methodological honesty:** taboos and holdout documented under `docs/brainstorms/` (avoid careless curve-fitting).
+- **Doc index:** [`docs/README.md`](docs/README.md).
 
 What it **does not** promise: a plug-and-play profitable edge. Success here = clear tooling + buildable data + green CI.
 
@@ -82,6 +85,7 @@ Large sweep artifacts, pitch PDFs, Telegram bots, and other paths listed in `.gi
 ## Reach & discovery
 
 - Dependabot and CI are enabled; topics and repo description are set on GitHub.
+- **Discussions** are enabled for Q&A (prefer over Issues for open questions).
 - Share a short technical post (problem → approach → JSON sample + disclaimer) rather than bare repo links.
 - PyPI publishing is optional; see [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
 

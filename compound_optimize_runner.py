@@ -38,7 +38,7 @@ def load_data(db_path):
     co.close()
     
     ts_b = [x[0] for x in rb]; cl_b = [x[1] for x in rb]
-    ts_e = [x[0] for x in re]; cl_e = [x[1] for x in re]
+    _ts_e = [x[0] for x in re]; cl_e = [x[1] for x in re]
     fund_b = {x[0]: x[1] for x in fb}; fund_e = {x[0]: x[1] for x in fe}
     
     n = min(len(cl_b), len(cl_e))
