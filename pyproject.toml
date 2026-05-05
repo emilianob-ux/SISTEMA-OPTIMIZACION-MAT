@@ -25,7 +25,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<9", "ruff>=0.9,<1", "pre-commit>=4,<5"]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1", "pre-commit>=4,<5"]
 
 [project.urls]
 Homepage = "https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT"
