@@ -10,10 +10,13 @@ Gracias por interesarte en mejorar este proyecto.
    - `python scripts/bootstrap_synthetic_candles_db.py`
    - `pytest tests/`
    - `python compound_optimize_runner.py --db data/synthetic_signal_tune.db --holdout-frac 0 | python -c "import json,sys; json.load(sys.stdin)"`
+   - `ruff check .` (misma regla que en CI).
 
-2. Mantené los cambios **acotados** al problema (sin refactors masivos salvo que acuerden en un issue).
+2. Opcional: instalá hooks locales — `pre-commit install` y `pre-commit run --all-files` (usa `.pre-commit-config.yaml`).
 
-3. Si tocás contratos numéricos (ruina, ventanas, métricas), documentá el cambio en el README o en `docs/`.
+3. Mantené los cambios **acotados** al problema (sin refactors masivos salvo que acuerden en un issue).
+
+4. Si tocás contratos numéricos (ruina, ventanas, métricas), documentá el cambio en el README o en `docs/`.
 
 ## Issues
 

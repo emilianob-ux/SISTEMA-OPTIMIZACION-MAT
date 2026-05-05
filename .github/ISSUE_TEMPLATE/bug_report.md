@@ -1,7 +1,7 @@
 ---
 name: Bug report / Informe de error
 about: Describe an unexpected failure or wrong metric/output (English / Español).
-labels: []
+labels: ["bug"]
 ---
 
 ## Describe the bug / Descripción

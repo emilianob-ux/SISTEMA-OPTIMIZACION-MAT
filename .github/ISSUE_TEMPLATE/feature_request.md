@@ -1,7 +1,7 @@
 ---
 name: Feature request / Solicitud de mejora
 about: Propose an enhancement aligned with backtesting scope (EN/ES).
-labels: []
+labels: ["enhancement"]
 ---
 
 ## Problem / Problema
