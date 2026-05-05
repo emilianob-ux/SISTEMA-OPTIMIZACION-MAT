@@ -1,0 +1,23 @@
+{
+  "S_mode": 250,
+  "T_goal": 1000,
+  "L_ff": {
+    "L_low": 5,
+    "L_mid": 8,
+    "L_high": 10,
+    "E_a": 220,
+    "E_b": 280,
+    "w_a": 15,
+    "w_b": 15
+  },
+  "hard": {
+    "L_min": 3,
+    "L_max": 12
+  },
+  "pi": {
+    "K_p": 0.25,
+    "K_i": 0.05,
+    "I_max": 2.0,
+    "anti_windup": "conditional_freeze"
+  }
+}

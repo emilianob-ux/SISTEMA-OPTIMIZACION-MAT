@@ -1,0 +1,197 @@
+{
+  "contract": {
+    "equity": {
+      "initial": 140,
+      "target": 1000,
+      "ruin": 70
+    },
+    "monte_carlo": {
+      "n_paths": 1000,
+      "seed": 42
+    },
+    "simulation": {
+      "max_steps": 1200,
+      "dt": 1.0
+    },
+    "gates": {
+      "p_ruin_max": 0.52,
+      "min_n_paths": 1000
+    },
+    "ladder_search": {
+      "thresholds": [
+        220,
+        250,
+        280
+      ],
+      "leverage_low": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "leverage_high": [
+        8,
+        10,
+        12
+      ],
+      "baseline_leverage": 10
+    }
+  },
+  "calibration": {
+    "mu": -5.376328263755558e-07,
+    "sigma": 0.0026651904218396266,
+    "baseline_leverage": 10,
+    "target_win": 0.079,
+    "target_ruin": 0.509,
+    "calibration_error": 0.003362000000000002,
+    "calibration_rates_subsample": {
+      "p_win": 0.03,
+      "p_ruin": 0.478,
+      "p_survive": 0.492
+    },
+    "note": "Calibracion con min(n_paths,6000) trayectorias; baseline+rejilla usan shock_matrix CRN."
+  },
+  "baseline_full_n": {
+    "n_paths": 1000,
+    "seed": 42,
+    "rates": {
+      "p_win": 0.025,
+      "p_ruin": 0.484,
+      "p_survive": 0.491
+    }
+  },
+  "best_feasible_under_p_ruin_gate": {
+    "threshold": 220,
+    "leverage_low": 6,
+    "leverage_high": 12,
+    "p_win": 0.018,
+    "p_ruin": 0.251,
+    "p_survive": 0.731,
+    "feasible_gate": true,
+    "score": -0.04475
+  },
+  "top_by_p_win": [
+    {
+      "threshold": 220,
+      "leverage_low": 6,
+      "leverage_high": 12,
+      "p_win": 0.018,
+      "p_ruin": 0.251,
+      "p_survive": 0.731,
+      "feasible_gate": true,
+      "score": -0.04475
+    },
+    {
+      "threshold": 250,
+      "leverage_low": 6,
+      "leverage_high": 12,
+      "p_win": 0.013,
+      "p_ruin": 0.249,
+      "p_survive": 0.738,
+      "feasible_gate": true,
+      "score": -0.04925
+    },
+    {
+      "threshold": 280,
+      "leverage_low": 6,
+      "leverage_high": 12,
+      "p_win": 0.011,
+      "p_ruin": 0.249,
+      "p_survive": 0.74,
+      "feasible_gate": true,
+      "score": -0.051250000000000004
+    },
+    {
+      "threshold": 220,
+      "leverage_low": 5,
+      "leverage_high": 12,
+      "p_win": 0.01,
+      "p_ruin": 0.16,
+      "p_survive": 0.83,
+      "feasible_gate": true,
+      "score": -0.03
+    },
+    {
+      "threshold": 220,
+      "leverage_low": 6,
+      "leverage_high": 10,
+      "p_win": 0.009,
+      "p_ruin": 0.251,
+      "p_survive": 0.74,
+      "feasible_gate": true,
+      "score": -0.05375
+    },
+    {
+      "threshold": 250,
+      "leverage_low": 5,
+      "leverage_high": 12,
+      "p_win": 0.006,
+      "p_ruin": 0.16,
+      "p_survive": 0.834,
+      "feasible_gate": true,
+      "score": -0.034
+    },
+    {
+      "threshold": 250,
+      "leverage_low": 6,
+      "leverage_high": 10,
+      "p_win": 0.006,
+      "p_ruin": 0.249,
+      "p_survive": 0.745,
+      "feasible_gate": true,
+      "score": -0.05625
+    },
+    {
+      "threshold": 280,
+      "leverage_low": 6,
+      "leverage_high": 10,
+      "p_win": 0.005,
+      "p_ruin": 0.249,
+      "p_survive": 0.746,
+      "feasible_gate": true,
+      "score": -0.05725
+    },
+    {
+      "threshold": 280,
+      "leverage_low": 5,
+      "leverage_high": 12,
+      "p_win": 0.004,
+      "p_ruin": 0.16,
+      "p_survive": 0.836,
+      "feasible_gate": true,
+      "score": -0.036000000000000004
+    },
+    {
+      "threshold": 220,
+      "leverage_low": 4,
+      "leverage_high": 12,
+      "p_win": 0.003,
+      "p_ruin": 0.075,
+      "p_survive": 0.922,
+      "feasible_gate": true,
+      "score": -0.01575
+    },
+    {
+      "threshold": 220,
+      "leverage_low": 5,
+      "leverage_high": 10,
+      "p_win": 0.003,
+      "p_ruin": 0.16,
+      "p_survive": 0.837,
+      "feasible_gate": true,
+      "score": -0.037
+    },
+    {
+      "threshold": 250,
+      "leverage_low": 5,
+      "leverage_high": 10,
+      "p_win": 0.003,
+      "p_ruin": 0.16,
+      "p_survive": 0.837,
+      "feasible_gate": true,
+      "score": -0.037
+    }
+  ],
+  "disclaimer": "Surrogate lognormal con barreras; no sustituye hydra.backtest con funding real. Metodo: rejilla + MC + gate p_ruin. Post-calibracion, baseline y ladder comparten la misma matriz Z por (trayectoria, paso) y el mismo seed/n_paths del contrato; la calibracion mu/sigma no usa esa matriz.",
+  "wall_time_ms": 132112
+}

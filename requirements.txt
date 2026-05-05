@@ -1,0 +1,4 @@
+# HTTP client for data.binance.vision (public data, no API keys).
+requests>=2.28.0,<3
+# compound_optimize_runner.py
+numpy>=1.24,<3
