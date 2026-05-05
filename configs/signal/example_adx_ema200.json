@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "logic": "all",
+  "rules": [
+    { "op": "dist_close_ema_ge", "ema_period": 200, "value_pct": 0.0 },
+    { "op": "adx_ge", "value": 15 }
+  ]
+}

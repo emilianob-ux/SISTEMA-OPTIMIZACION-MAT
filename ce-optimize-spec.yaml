@@ -1,0 +1,45 @@
+name: surfer-compound-ladder
+
+metric:
+  primary:
+    type: hard
+    name: p_win_terminal
+    direction: maximize
+  degenerate_gates:
+    - name: p_ruin
+      operator: "<="
+      threshold: 0.55
+    - name: n_paths
+      operator: ">="
+      threshold: 1000
+  diagnostics:
+    - p_survive_medium
+    - p_win_given_crossed_250
+    - p_win_given_crossed_400
+    - p_ruin_before_double
+
+measurement:
+  # Sin holdout: metricas solo en todas las ventanas. Con --holdout-frac 0.2: JSON incluye walk_forward (R8).
+  command: 'python compound_optimize_runner.py --lev1 10 --lev2 10 --lev3 10 --t1 280 --t2 400 --derisk 0.0 --early-airbag false --holdout-frac 0.2'
+  working_directory: "."
+  stability:
+    mode: repeat
+    repeat_count: 1
+    noise_threshold: 0.0
+
+scope:
+  mutable:
+    - "compound_optimize_runner.py"
+  immutable:
+    - "data/**"
+    - "requirements.txt"
+
+execution:
+  mode: serial
+  max_concurrent: 1
+  backend: worktree
+
+stopping:
+  max_iterations: 24
+  max_hours: 4
+  plateau_iterations: 6

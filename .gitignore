@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.egg-info/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+ENV/
+
+# Tests / tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Datos locales (no subir DB grandes ni caches de descarga)
+data/*.db
+!data/.gitkeep
+data/cache/
+
+# Env / IDE
+.env
+.env.*
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# --- Repo público: fuera del núcleo optimización/backtest ---
+# PDFs (pitch, briefs, descargas)
+*.pdf
+
+# Documentación conceptual / marca (no motor numérico)
+SK-MATHS/
+
+# Otros proyectos en la misma carpeta local
+multi_agent_trading/
+
+# Bots Telegram (no backtest)
+scripts/telegram_hola_bot.py
+scripts/telegram_scheduler_hola.py
+
+# Generadores de PDF / pitch en raíz (no runner ni sweeps)
+/generate_*pdf*.py
+/generate_audience_pdfs.py
+/generate_pitch_pdfs.py
+/generate_pdr_committee_*.py
+
+# Narrativa comercial / PDR en raíz (README y guías OSS siguen versionadas)
+/PDR_*.md
+/PDR_programa_compras.md
+/DRE_*.md
+
+# Artefactos grandes de corridas locales (contrato + surrogate sí van al repo)
+optimization/sweep*.json
+optimization/sweep*.jsonl
+optimization/signal_grid*.json
+optimization/signal_grid*.md
+optimization/sweep_pi_ref*.json
+optimization/sweep_pi_ref*.jsonl
+optimization/last_run.json
