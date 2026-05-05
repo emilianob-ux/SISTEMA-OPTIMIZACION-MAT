@@ -20,6 +20,10 @@ Gracias por interesarte en mejorar este proyecto.
 - Incluí SO, versión de Python y comando exacto que falla.
 - Para bugs de backtest: pegá un fragmento del JSON de salida (sin datos privados).
 
+Etiquetas estándar del repo: `bug`, `enhancement`, `documentation`, `good first issue`, `help wanted`, `question`. Para empezar a contribuir, buscá **`good first issue`**.
+
+Tutorial para reproducir el stack local: [`docs/tutorial_quickstart.md`](docs/tutorial_quickstart.md).
+
 ## Código
 
 - Python 3.11+ recomendado (CI usa 3.12).

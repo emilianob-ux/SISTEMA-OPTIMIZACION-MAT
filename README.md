@@ -1,5 +1,7 @@
 # Sistema de optimización MAT — backtest compuesto (BTC/ETH)
 
+**English:** [README.en.md](README.en.md)
+
 Motor de **simulación por ventanas deslizantes** sobre futuros USDT (precio + funding) con gestión de apalancamiento por equity, reglas de señal opcionales en JSON y barridos reproducibles. Pensado para **investigación cuantitativa**, no como señal de trading en vivo.
 
 [![CI](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml)
@@ -28,6 +30,8 @@ Lo que **no** promete: edge rentable listo para copiar. Open source exitoso aqu�
 ---
 
 ## Inicio rápido (sin datos propios)
+
+Tutorial paso a paso (venv, DB sintética, tests, JSON): [`docs/tutorial_quickstart.md`](docs/tutorial_quickstart.md).
 
 ```bash
 pip install -r requirements.txt -r requirements-dev.txt
@@ -103,7 +107,8 @@ Para material comercial usá otro repositorio o Releases sin mezclarlo con el c�
 **Calidad incremental**
 
 - `pre-commit` + `ruff` (lint rápido) cuando el equipo crezca.
-- README en inglés como `README.en.md` con link desde el español si buscás audiencia global.
+- README en inglés: [`README.en.md`](README.en.md) (enlace arriba).
+- Publicación opcional en PyPI: [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
 
 ---
 
