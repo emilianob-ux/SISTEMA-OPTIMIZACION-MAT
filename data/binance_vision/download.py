@@ -7,7 +7,7 @@ from typing import Optional
 import requests
 
 DEFAULT_TIMEOUT_S = 120
-DEFAULT_USER_AGENT = "SISTEMA-OPTIMIZACION-MAT-binance-vision/1.0"
+DEFAULT_USER_AGENT = "decision-resilience-engine-binance-vision/1.0"
 
 
 def download_bytes(

@@ -1,16 +1,16 @@
-﻿# Sistema de optimizacion MAT + Decision Resilience Engine (DRE)
+﻿# Decision Resilience Engine (DRE) — decision-resilience-engine
 
 **English version:** [README.en.md](README.en.md)
 
-Framework de investigacion y ejecucion para **optimizacion cuantitativa resiliente**:
+Framework de investigacion y ejecucion centrado en **resiliencia y gobernanza de decisiones** (DRE), con **MAT** como puente de medicion cuantitativa secundario (futuros BTC/ETH):
 
+- **DRE (MVP)**: orquestador con FSM, governance append-only, checkpoints/resume, API FastAPI, storage memoria/Redis y contratos ICD.
 - **MAT**: backtest compuesto BTC/ETH (futuros USDT) con ventanas deslizantes, funding y optimizacion de reglas de senal.
-- **DRE (MVP)**: orquestador con FSM, governance append-only, checkpoints/resume, API FastAPI, storage memoria/Redis y puente de medicion a MAT.
 
-[![CI](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml)
+[![CI](https://github.com/emilianob-ux/decision-resilience-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/decision-resilience-engine/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%20|%203.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/sistema-optimizacion-mat.svg)](https://pypi.org/project/sistema-optimizacion-mat/)
+[![PyPI](https://img.shields.io/pypi/v/decision-resilience-engine.svg)](https://pypi.org/project/decision-resilience-engine/)
 
 > **Aviso legal:** software experimental para investigacion. El rendimiento pasado no garantiza resultados futuros.
 
@@ -18,10 +18,10 @@ Framework de investigacion y ejecucion para **optimizacion cuantitativa resilien
 
 ## Que aporta este proyecto
 
+- **Resiliencia de decisiones:** flujo con estados, auditoria, colision `run_id`/`data_hash`, checkpoints y reanudacion (DRE).
 - **Reproducibilidad:** CI y tests activos, dataset sintetico y contratos versionados.
-- **Resiliencia de decisiones:** flujo con estados, auditoria, colision `run_id`/`data_hash`, checkpoints y reanudacion.
 - **Operabilidad real:** API HTTP, almacenamiento Redis opcional y trazas append-only en SQLite.
-- **Extensibilidad:** separación clara entre simulador MAT, skills DRE y contratos ICD.
+- **Extensibilidad:** separacion clara entre skills DRE, contratos ICD y simulador MAT como medicion.
 
 ## Demo en 60 segundos
 
@@ -56,13 +56,15 @@ curl -X POST "http://127.0.0.1:8000/dre/resume" \
 
 ## Instalación
 
-### Uso rápido desde PyPI (MAT)
+### Uso rapido desde PyPI (modulos de medicion MAT en la wheel)
 
 ```bash
-pip install sistema-optimizacion-mat
+pip install decision-resilience-engine
 ```
 
-### Entorno completo del repo (MAT + DRE)
+El paquete PyPI incluye los modulos **MAT** listados en `pyproject.toml`; el codigo **`dre/`** se usa desde el **clon del repo** (no va en la wheel).
+
+### Entorno completo del repo (DRE + MAT)
 
 ```bash
 pip install -r requirements.txt -r requirements-dev.txt

@@ -1,13 +1,13 @@
 # Launch Kit (Reach & Distribution)
 
-Use this pack to maximize visibility for `SISTEMA-OPTIMIZACION-MAT`.
+Use this pack to maximize visibility for `decision-resilience-engine`.
 
 ## Canonical links
 
-- Repo: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT
-- Release v0.2.0: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/releases/tag/v0.2.0
-- Discussion announcement: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/discussions/4
-- PyPI: https://pypi.org/project/sistema-optimizacion-mat/
+- Repo: https://github.com/emilianob-ux/decision-resilience-engine
+- Release v0.3.0: https://github.com/emilianob-ux/decision-resilience-engine/releases/tag/v0.3.0
+- Discussion announcement: https://github.com/emilianob-ux/decision-resilience-engine/discussions/4
+- PyPI: https://pypi.org/project/decision-resilience-engine/
 
 ## Elevator pitch (2 lines)
 
@@ -24,7 +24,7 @@ English:
 ### X / Bluesky (EN)
 
 ```text
-Shipped v0.2.0 of SISTEMA-OPTIMIZACION-MAT.
+Shipped v0.3.0 of decision-resilience-engine.
 
 Now includes a Decision Resilience Engine (DRE) MVP:
 - FSM orchestration
@@ -32,22 +32,22 @@ Now includes a Decision Resilience Engine (DRE) MVP:
 - checkpoints + resume
 - FastAPI endpoints (/dre/simulate, /dre/resume)
 
-Repo: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT
-Release: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/releases/tag/v0.2.0
+Repo: https://github.com/emilianob-ux/decision-resilience-engine
+Release: https://github.com/emilianob-ux/decision-resilience-engine/releases/tag/v0.3.0
 ```
 
 ### X / LinkedIn (ES)
 
 ```text
-Publique v0.2.0 de SISTEMA-OPTIMIZACION-MAT.
+Publique v0.3.0 de decision-resilience-engine.
 
 El proyecto ahora combina:
 - MAT (backtesting compuesto BTC/ETH)
 - DRE MVP (orquestacion FSM, governance append-only, checkpoints/resume, API FastAPI)
 
-Repo: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT
-Release: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/releases/tag/v0.2.0
-PyPI: https://pypi.org/project/sistema-optimizacion-mat/
+Repo: https://github.com/emilianob-ux/decision-resilience-engine
+Release: https://github.com/emilianob-ux/decision-resilience-engine/releases/tag/v0.3.0
+PyPI: https://pypi.org/project/decision-resilience-engine/
 ```
 
 ### Show HN template
@@ -65,14 +65,14 @@ Hi HN,
 
 I open-sourced a framework that combines a reproducible backtesting engine (MAT) with a Decision Resilience Engine (DRE) MVP.
 
-Key pieces in v0.2.0:
+Key pieces in v0.3.0:
 - state-machine orchestration
 - append-only governance with run_id/data_hash consistency checks
 - checkpoint + resume workflow
 - FastAPI service for simulation and resume
 
-Repo: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT
-Release notes: https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/releases/tag/v0.2.0
+Repo: https://github.com/emilianob-ux/decision-resilience-engine
+Release notes: https://github.com/emilianob-ux/decision-resilience-engine/releases/tag/v0.3.0
 
 Feedback on architecture and hardening roadmap is very welcome.
 ```

@@ -1,8 +1,19 @@
-# Changelog
+﻿# Changelog
 
 Format based on Keep a Changelog.
 
 ## [Unreleased]
+
+## [0.3.0] - 2026-05-06
+
+### Changed
+
+- Proyecto renombrado a **decision-resilience-engine**: repo GitHub, metadatos PyPI (`pip install decision-resilience-engine`), README y docs de outreach alineados.
+- Prioridad narrativa: **DRE** como foco principal; **MAT** como puente de medicion secundario.
+
+### Migration
+
+- PyPI: el paquete **`sistema-optimizacion-mat`** deja de actualizarse en favor de **`decision-resilience-engine`** (nuevo nombre en el indice PyPI).
 
 ## [0.2.0] - 2026-05-06
 

@@ -30,4 +30,4 @@ pytest tests/test_dre_*.py -q
 
 ## PyPI
 
-El paquete publicado `sistema-optimizacion-mat` **no incluye** `dre/` en la wheel (sigue siendo solo MAT). El DRE se usa desde **clon del repo** o futuro paquete separado.
+El paquete publicado `decision-resilience-engine` en PyPI **no incluye** `dre/` en la wheel (incluye modulos MAT de medicion). El DRE se usa desde **clon del repo** o un futuro paquete dedicado.

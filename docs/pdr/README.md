@@ -20,11 +20,11 @@ Este directorio contiene el **Preliminary Design Review (PDR)** en archivos inde
 
 Fundamentos matemáticos, diagramas Mermaid y stack de implementación: [**DRE_TECHNICAL_ARCHITECTURE.md**](../DRE_TECHNICAL_ARCHITECTURE.md) (v1.1, alineado con specs v1.5–v1.8).
 
-## Relación con este repositorio (MAT)
+## Relación con este repositorio (`decision-resilience-engine`)
 
-- **`sistema-optimizacion-mat`** en este repo = implementación del **simulador / medición** en dominio futuros compuesto (SQLite, métricas `p_ruin`, walk-forward, rejillas de señales).
-- El **DRE** define el **orquestador**, stress formalizado Optimizer→Stress→Backprop, governance append-only, overrides humanos, drift continuo, etc.
-- Integración prevista: el runner MAT puede actuar como **comando de medición** dentro del pipeline DRE (patrón tipo “measurement.command”), sin confundir el alcance del paquete PyPI actual con el motor completo del DRE.
+- **`decision-resilience-engine`** (repo): núcleo de especificación e implementación **DRE**; el codigo **`dre/`** se ejecuta desde clon local / CI (no wheel PyPI).
+- **MAT** en este repo = implementación del **simulador / medición** en dominio futuros compuesto (SQLite, métricas `p_ruin`, walk-forward, rejillas de señales), disponible como modulos en la wheel PyPI.
+- Integración: el runner MAT actúa como **comando de medición** dentro del pipeline DRE (patrón “measurement.command”).
 
 ## Uso sugerido
 

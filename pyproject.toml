@@ -1,15 +1,25 @@
-[build-system]
+﻿[build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sistema-optimizacion-mat"
-version = "0.2.0"
-description = "MAT backtesting engine (BTC/ETH futures) plus DRE MVP orchestration components."
+name = "decision-resilience-engine"
+version = "0.3.0"
+description = "Decision Resilience Engine (DRE) reference implementation and tooling; includes MAT futures backtesting as a measurement bridge."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
-keywords = ["backtest", "quantitative-finance", "binance", "futures", "monte-carlo", "optimization"]
+keywords = [
+  "decision-engine",
+  "governance",
+  "orchestration",
+  "dre",
+  "backtest",
+  "quantitative-finance",
+  "binance",
+  "futures",
+  "optimization",
+]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Science/Research",
@@ -38,17 +48,17 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT"
-Documentation = "https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/blob/main/docs/tutorial_quickstart.md"
-Repository = "https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT"
-Issues = "https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/issues"
-PyPI = "https://pypi.org/project/sistema-optimizacion-mat/"
+Homepage = "https://github.com/emilianob-ux/decision-resilience-engine"
+Documentation = "https://github.com/emilianob-ux/decision-resilience-engine/blob/main/docs/tutorial_quickstart.md"
+Repository = "https://github.com/emilianob-ux/decision-resilience-engine"
+Issues = "https://github.com/emilianob-ux/decision-resilience-engine/issues"
+PyPI = "https://pypi.org/project/decision-resilience-engine/"
 
 [tool.setuptools]
 py-modules = ["compound_optimize_runner", "leverage_pi"]
 
-# `dre/` es c??digo de referencia del ICD en el repo y tests (requiere pydantic en dev);
-# no se incluye en la distribuci??n PyPI del paquete MAT principal.
+# `dre/` es codigo de referencia del ICD en el repo y tests (requiere pydantic en dev);
+# no se incluye en la wheel PyPI (solo modulos MAT de medicion en features/).
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["features*"]
@@ -61,5 +71,5 @@ line-length = 100
 select = ["E", "F", "I"]
 
 [tool.ruff.lint.per-file-ignores]
-# Estilo compacto heredado del runner principal; migraci??n gradual posible.
+# Estilo compacto heredado del runner principal; migracion gradual posible.
 "compound_optimize_runner.py" = ["E701", "E702"]

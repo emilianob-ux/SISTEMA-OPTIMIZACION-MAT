@@ -2,7 +2,7 @@
 
 ## Before posting
 
-- [ ] Release v0.2.0 is public
+- [ ] Release v0.3.0 is public
 - [ ] README and README.en are up to date
 - [ ] Quickstart commands tested on clean env
 - [ ] One short demo clip captured (30-60s)
