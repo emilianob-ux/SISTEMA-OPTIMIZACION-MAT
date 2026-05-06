@@ -11,6 +11,16 @@ Format based on Keep a Changelog.
 - Proyecto renombrado a **decision-resilience-engine**: repo GitHub, metadatos PyPI (`pip install decision-resilience-engine`), README y docs de outreach alineados.
 - Prioridad narrativa: **DRE** como foco principal; **MAT** como puente de medicion secundario.
 
+### Added
+
+- `MANIFEST.in`: sdist sin `tests/`, `dre/` ni `scripts/` (wheel MAT sigue igual).
+- CI: paso `python -m build` + `twine check --strict` sobre artefactos.
+- Guia `docs/PUBLISHING_PYPI.md` (Trusted Publisher PyPI).
+
+### Fixed
+
+- BOM UTF-8 inicial en `pyproject.toml` que rompia `python -m build` en algunos entornos.
+
 ### Migration
 
 - PyPI: el paquete **`sistema-optimizacion-mat`** deja de actualizarse en favor de **`decision-resilience-engine`** (nuevo nombre en el indice PyPI).

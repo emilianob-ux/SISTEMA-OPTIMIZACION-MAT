@@ -64,6 +64,8 @@ pip install decision-resilience-engine
 
 El paquete PyPI incluye los modulos **MAT** listados en `pyproject.toml`; el codigo **`dre/`** se usa desde el **clon del repo** (no va en la wheel).
 
+Mantenimiento / publicacion en PyPI: [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
+
 ### Entorno completo del repo (DRE + MAT)
 
 ```bash

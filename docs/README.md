@@ -20,6 +20,12 @@ Este repositorio incluye especificacion + implementacion MVP del DRE.
 | [DATASET.md](DATASET.md) | Esquema SQLite esperado (velas + funding). |
 | [signal_rules_examples.md](signal_rules_examples.md) | Ejemplos de `--signal-config` en JSON. |
 
+## Publicacion PyPI
+
+| Documento | Contenido |
+|-----------|-----------|
+| [PUBLISHING_PYPI.md](PUBLISHING_PYPI.md) | Trusted Publisher + workflow `publish-pypi.yml` + release/tag. |
+
 ## Go-to-market / alcance
 
 | Documento | Contenido |

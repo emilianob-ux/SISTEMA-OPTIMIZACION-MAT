@@ -39,6 +39,12 @@ jobs:
       - name: Unit tests
         run: pytest tests/ -q
 
+      - name: Package build (sdist/wheel + metadata check)
+        run: |
+          pip install build twine
+          python -m build
+          twine check --strict dist/*
+
       - name: Smoke runner (JSON válido)
         run: |
           python compound_optimize_runner.py --db data/synthetic_signal_tune.db --holdout-frac 0 \

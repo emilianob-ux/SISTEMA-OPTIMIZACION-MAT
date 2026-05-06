@@ -1,0 +1,9 @@
+include LICENSE README.md pyproject.toml
+include compound_optimize_runner.py leverage_pi.py
+graft features
+prune tests
+prune dre
+prune scripts
+prune .github
+global-exclude __pycache__
+global-exclude *.py[cod]
