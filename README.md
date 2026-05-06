@@ -10,7 +10,7 @@ Framework de investigacion y ejecucion centrado en **resiliencia y gobernanza de
 [![CI](https://github.com/emilianob-ux/decision-resilience-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/decision-resilience-engine/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%20|%203.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/decision-resilience-engine.svg)](https://pypi.org/project/decision-resilience-engine/)
+[![PyPI — pendiente](https://img.shields.io/badge/PyPI-primer%20release%20pendiente-lightgrey)](docs/PUBLISHING_PYPI.md)
 
 > **Aviso legal:** software experimental para investigacion. El rendimiento pasado no garantiza resultados futuros.
 
@@ -56,15 +56,21 @@ curl -X POST "http://127.0.0.1:8000/dre/resume" \
 
 ## Instalación
 
-### Uso rapido desde PyPI (modulos de medicion MAT en la wheel)
+### PyPI (cuando exista la primera publicación)
+
+El nombre del proyecto en PyPI será `decision-resilience-engine`, pero **todavía no hay ninguna versión subida** (por eso el indicador gris enlaza a [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md)). Cuando publiques la primera wheel, podrás usar:
 
 ```bash
 pip install decision-resilience-engine
 ```
 
-El paquete PyPI incluye los modulos **MAT** listados en `pyproject.toml`; el codigo **`dre/`** se usa desde el **clon del repo** (no va en la wheel).
+La wheel incluirá los módulos **MAT** definidos en `pyproject.toml`; el código **`dre/`** sigue pensado para usarse desde **clon del repositorio**.
 
-Mantenimiento / publicacion en PyPI: [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
+### Mientras tanto (instalar desde GitHub)
+
+```bash
+pip install "git+https://github.com/emilianob-ux/decision-resilience-engine.git"
+```
 
 ### Entorno completo del repo (DRE + MAT)
 
