@@ -30,6 +30,7 @@ Then call:
 
 ## Docs
 
+- PyPI publishing (maintainers): [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md)
 - Docs index: [`docs/README.md`](docs/README.md)
 - DRE PDR package: [`docs/pdr/README.md`](docs/pdr/README.md)
 - Technical architecture: [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md)
