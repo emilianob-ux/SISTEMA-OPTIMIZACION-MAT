@@ -2,6 +2,16 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [Unreleased]
+
+### Añadido
+
+- `CITATION.cff` para citación del paquete.
+- `docs/ENTERPRISE_READINESS.md` (due diligence ES/EN).
+- Plantilla de issue para documentación (`.github/ISSUE_TEMPLATE/documentation.md`).
+- Badge PyPI y sección de instalación desde PyPI en README (ES/EN).
+- URL PyPI en `[project.urls]` de `pyproject.toml`.
+
 ## [0.1.4] — 2026-05-06
 
 ### Cambiado

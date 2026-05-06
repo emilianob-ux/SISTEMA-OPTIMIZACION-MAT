@@ -7,8 +7,21 @@
 [![CI](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%20|%203.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/sistema-optimizacion-mat.svg)](https://pypi.org/project/sistema-optimizacion-mat/)
 
 > **Disclaimer:** experimental software. Past performance does not imply future results. Use at your own risk and in compliance with applicable regulation.
+
+---
+
+## Install from PyPI
+
+Published as [`sistema-optimizacion-mat`](https://pypi.org/project/sistema-optimizacion-mat/):
+
+```bash
+pip install sistema-optimizacion-mat
+```
+
+For full tests, scripts, and a reproducible synthetic DB, clone the repo and follow [`docs/tutorial_quickstart.md`](docs/tutorial_quickstart.md) (or `pip install -e ".[dev]"` from the repo root).
 
 ---
 
@@ -18,7 +31,7 @@
 - **Explicit contract:** metrics (`p_win_terminal`, `p_ruin`, walk-forward) and dataset docs in [`docs/DATASET.md`](docs/DATASET.md).
 - **Extensible:** filter rules in JSON (`--signal-config`), sample ce-optimize-style YAML spec.
 - **Methodological honesty:** taboos and holdout documented under `docs/brainstorms/` (avoid careless curve-fitting).
-- **Doc index:** [`docs/README.md`](docs/README.md).
+- **Doc index:** [`docs/README.md`](docs/README.md) (tutorial, dataset, PyPI, enterprise readiness, examples).
 
 What it **does not** promise: a plug-and-play profitable edge. Success here = clear tooling + buildable data + green CI.
 
@@ -85,9 +98,16 @@ Large sweep artifacts, pitch PDFs, Telegram bots, and other paths listed in `.gi
 ## Reach & discovery
 
 - Dependabot and CI are enabled; topics and repo description are set on GitHub.
+- **PyPI:** `pip install sistema-optimizacion-mat`; maintainer notes in [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
 - **Discussions** are enabled for Q&A (prefer over Issues for open questions).
 - Share a short technical post (problem → approach → JSON sample + disclaimer) rather than bare repo links.
-- PyPI publishing is optional; see [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
+- Academic citation metadata: [`CITATION.cff`](CITATION.cff) at repo root.
+
+---
+
+## Enterprise / due diligence
+
+Short checklist for adoption reviews: [`docs/ENTERPRISE_READINESS.md`](docs/ENTERPRISE_READINESS.md).
 
 ---
 

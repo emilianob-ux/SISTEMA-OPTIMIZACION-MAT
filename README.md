@@ -7,8 +7,21 @@ Motor de **simulación por ventanas deslizantes** sobre futuros USDT (precio + f
 [![CI](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%20|%203.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/sistema-optimizacion-mat.svg)](https://pypi.org/project/sistema-optimizacion-mat/)
 
 > **Aviso legal:** esto es software experimental. Los resultados históricos no garantizan rendimiento futuro. Usalo bajo tu propio criterio y cumplimiento normativo.
+
+---
+
+## Instalación desde PyPI
+
+Paquete publicado como [`sistema-optimizacion-mat`](https://pypi.org/project/sistema-optimizacion-mat/):
+
+```bash
+pip install sistema-optimizacion-mat
+```
+
+Para tests, scripts y una DB sintética reproducible, cloná el repo y seguí [`docs/tutorial_quickstart.md`](docs/tutorial_quickstart.md) (también podés usar `pip install -e ".[dev]"` desde la raíz).
 
 ---
 
@@ -18,7 +31,7 @@ Motor de **simulación por ventanas deslizantes** sobre futuros USDT (precio + f
 - **Contrato explícito:** métricas (`p_win_terminal`, `p_ruin`, walk-forward) y docs del dataset en [`docs/DATASET.md`](docs/DATASET.md).
 - **Extensible:** reglas de filtro en JSON (`--signal-config`), spec tipo ce-optimize en YAML de ejemplo.
 - **Honestidad metodológica:** tabúes y holdout documentados en `docs/brainstorms/` (evitar curve-fitting descuidado).
-- **Índice de docs:** [`docs/README.md`](docs/README.md) (tutorial, dataset, PyPI, ejemplos).
+- **Índice de docs:** [`docs/README.md`](docs/README.md) (tutorial, dataset, PyPI, due diligence, ejemplos).
 
 Lo que **no** promete: edge rentable listo para copiar. Open source exitoso aquí = herramienta clara + datos armables + CI verde.
 
@@ -96,8 +109,9 @@ Para material comercial usá otro repositorio o Releases sin mezclarlo con el c�
 **Ya versionado en el repo**
 
 - Dependabot (`.github/dependabot.yml`) para PRs de actualización de `numpy`/`requests` y de Actions.
+- Paquete en **PyPI** (`pip install sistema-optimizacion-mat`); proceso de publicación en [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
 - `pyproject.toml`: metadatos, keywords y `pip install -e ".[dev]"` como alternativa a los `requirements*.txt`.
-- [`CHANGELOG.md`](CHANGELOG.md) y ejemplo de JSON del runner en [`docs/examples/`](docs/examples/).
+- [`CHANGELOG.md`](CHANGELOG.md), [`CITATION.cff`](CITATION.cff) y ejemplo de JSON del runner en [`docs/examples/`](docs/examples/).
 
 **En la configuración del repo (no son archivos)**
 
@@ -109,9 +123,14 @@ Para material comercial usá otro repositorio o Releases sin mezclarlo con el c�
 
 **Calidad incremental**
 
-- `pre-commit` + `ruff` (lint rápido) cuando el equipo crezca.
+- `pre-commit` + `ruff` ya configurados (`.pre-commit-config.yaml`, CI).
 - README en inglés: [`README.en.md`](README.en.md) (enlace arriba).
-- Publicación opcional en PyPI: [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
+
+---
+
+## Due diligence / adopción institucional
+
+Resumen para equipos que evalúan adopción o fork interno: [`docs/ENTERPRISE_READINESS.md`](docs/ENTERPRISE_READINESS.md) (licencia, seguridad, reproducibilidad y límites del modelo).
 
 ---
 
