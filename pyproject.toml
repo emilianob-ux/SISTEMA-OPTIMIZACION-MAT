@@ -36,9 +36,11 @@ PyPI = "https://pypi.org/project/sistema-optimizacion-mat/"
 [tool.setuptools]
 py-modules = ["compound_optimize_runner", "leverage_pi"]
 
+# `dre/` es código de referencia del ICD en el repo y tests (requiere pydantic en dev);
+# no se incluye en la distribución PyPI del paquete MAT principal.
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["features*", "dre*"]
+include = ["features*"]
 
 [tool.ruff]
 target-version = "py311"
