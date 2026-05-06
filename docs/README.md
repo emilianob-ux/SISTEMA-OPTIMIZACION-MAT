@@ -1,19 +1,24 @@
-# Documentación
+﻿# Documentación
 
-## Uso del repo MAT (backtest / optimización de señales)
+## MAT (simulación y optimización)
 
 | Documento | Contenido |
 |-----------|-----------|
-| [tutorial_quickstart.md](tutorial_quickstart.md) | Entorno, DB sintética, tests, corrida del runner. |
+| [tutorial_quickstart.md](tutorial_quickstart.md) | Entorno, DB sintética, tests y corrida del runner. |
 | [DATASET.md](DATASET.md) | Esquema SQLite esperado (velas + funding). |
 | [signal_rules_examples.md](signal_rules_examples.md) | Ejemplos de `--signal-config` en JSON. |
 
-## Decision Resilience Engine (DRE) — especificación
+## DRE (Decision Resilience Engine)
 
-La visión de producto **Decision Resilience Engine** y el paquete **PDR** viven en [`pdr/`](pdr/README.md). El código Python de este repositorio implementa hoy el **motor MAT** (simulación compuesta); el DRE completo (orquestador, Redis, governance, causal, drift como servicio, etc.) está **especificado** ahí para diseño e implementación futura o en un repo hermano.
+Este repositorio incluye especificación + implementación MVP del DRE.
 
 | Documento | Contenido |
 |-----------|-----------|
-| [pdr/README.md](pdr/README.md) | Índice del paquete PDR + relación con MAT. |
-| [DRE_TECHNICAL_ARCHITECTURE.md](DRE_TECHNICAL_ARCHITECTURE.md) | Arquitectura técnica v1.1 (fundamentos, pipelines, Mermaid, stack). |
-| [DRE_IMPLEMENTATION_STATUS.md](DRE_IMPLEMENTATION_STATUS.md) | Qué está implementado en `dre/` vs pendiente. |
+| [pdr/README.md](pdr/README.md) | Paquete PDR (01–05) para comité técnico. |
+| [DRE_TECHNICAL_ARCHITECTURE.md](DRE_TECHNICAL_ARCHITECTURE.md) | Arquitectura técnica v1.1 (fundamentos, Mermaid, stack). |
+| [DRE_IMPLEMENTATION_STATUS.md](DRE_IMPLEMENTATION_STATUS.md) | Mapa especificación ↔ código y backlog. |
+
+Código relacionado:
+
+- [`dre/`](../dre/README.md): orquestador, governance, storage, skills, API.
+- [`scripts/run_dre_api.py`](../scripts/run_dre_api.py): arranque local del servicio.

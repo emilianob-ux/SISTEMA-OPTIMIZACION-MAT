@@ -1,104 +1,114 @@
-# Sistema de optimización MAT — backtest compuesto (BTC/ETH)
+﻿# Sistema de optimización MAT + Decision Resilience Engine (DRE)
 
-Motor de **simulación por ventanas deslizantes** sobre futuros USDT (precio + funding), apalancamiento ligado al equity, reglas de señal opcionales en JSON y barridos reproducibles. Pensado para **investigación cuantitativa**, no como señal de trading en vivo.
+Framework de investigación y ejecución para **optimización cuantitativa resiliente**:
+
+- **MAT**: backtest compuesto BTC/ETH (futuros USDT) con ventanas deslizantes, funding y optimización de reglas de señal.
+- **DRE (MVP)**: orquestador con FSM, governance append-only, checkpoints/resume, API FastAPI, storage memoria/Redis y puente de medición a MAT.
 
 [![CI](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%20|%203.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/sistema-optimizacion-mat.svg)](https://pypi.org/project/sistema-optimizacion-mat/)
 
-> **Aviso legal:** software experimental. El rendimiento pasado no garantiza resultados futuros. Usalo bajo tu criterio y cumplimiento normativo.
+> **Aviso legal:** software experimental para investigación. El rendimiento pasado no garantiza resultados futuros.
+
+---
+
+## Qué aporta este proyecto
+
+- **Reproducibilidad:** CI y tests activos, dataset sintético y contratos versionados.
+- **Resiliencia de decisiones:** flujo con estados, auditoría, colisión `run_id`/`data_hash`, checkpoints y reanudación.
+- **Operabilidad real:** API HTTP, almacenamiento Redis opcional y trazas append-only en SQLite.
+- **Extensibilidad:** separación clara entre simulador MAT, skills DRE y contratos ICD.
 
 ---
 
 ## Instalación
 
-**PyPI:**
+### Uso rápido desde PyPI (MAT)
 
 ```bash
 pip install sistema-optimizacion-mat
 ```
 
-**Repo completo** (tests, scripts, DB sintética): cloná el proyecto y seguí [`docs/tutorial_quickstart.md`](docs/tutorial_quickstart.md). También podés usar `pip install -e ".[dev]"` desde la raíz.
-
----
-
-## Requisitos
-
-- Python **3.11+** (CI usa 3.11 y 3.12).
-- `pip install -r requirements.txt` · desarrollo: `pip install -r requirements-dev.txt`
-
----
-
-## Inicio rápido
-
-Tutorial paso a paso: [`docs/tutorial_quickstart.md`](docs/tutorial_quickstart.md).
+### Entorno completo del repo (MAT + DRE)
 
 ```bash
 pip install -r requirements.txt -r requirements-dev.txt
+```
+
+---
+
+## Inicio rápido MAT
+
+```bash
 python scripts/bootstrap_synthetic_candles_db.py
 pytest tests/ -q
 python compound_optimize_runner.py --db data/synthetic_signal_tune.db --holdout-frac 0.2
 ```
 
-Salida: **JSON** en stdout (métricas agregadas y opcional `walk_forward`).
+Salida: JSON en stdout (por ejemplo `p_win_terminal`, `p_ruin`, `walk_forward`).
 
-Optimización acotada de reglas de señal:
+Optimización de señales:
 
 ```bash
 python scripts/optimize_signal_grid.py --db data/synthetic_signal_tune.db --preset smoke --skip-pairs --holdout-frac 0.2
 ```
 
-Ejemplos de `--signal-config`: [`docs/signal_rules_examples.md`](docs/signal_rules_examples.md).
+- Dataset esperado: [`docs/DATASET.md`](docs/DATASET.md)
+- Ejemplos `--signal-config`: [`docs/signal_rules_examples.md`](docs/signal_rules_examples.md)
 
 ---
 
-## Datos reales (Binance Vision)
+## API DRE (MVP)
 
-Utilidades en `data/binance_vision/` y [`scripts/download_binance_vision.py`](scripts/download_binance_vision.py). Esquema SQLite: [`docs/DATASET.md`](docs/DATASET.md).
+Levantar servicio:
 
-Variable opcional: `COMPOUND_OPT_DB=/ruta/a/candles.db`
+```bash
+python scripts/run_dre_api.py --db data/dre_governance.sqlite
+```
 
----
+Endpoints:
 
-## Componentes principales
+- `GET /dre/health`
+- `POST /dre/simulate`
+- `POST /dre/resume`
 
-| Pieza | Rol |
-|-------|-----|
-| [`compound_optimize_runner.py`](compound_optimize_runner.py) | SQLite, EMA/SMA + anti-whipsaw, equity target/ruina, JSON |
-| [`leverage_pi.py`](leverage_pi.py) | Política opcional `pi_ref` (PI + referencia suave) |
-| [`features/`](features/) | Indicadores, reglas `--signal-config` |
-| [`scripts/optimize_signal_grid.py`](scripts/optimize_signal_grid.py) | Rejilla de señales + gates `p_ruin` / Δ OOS |
-| [`optimization/contract.yaml`](optimization/contract.yaml) | Contrato numérico de referencia |
-| [`ce-optimize-spec.yaml`](ce-optimize-spec.yaml) | Spec tipo ce-optimize de ejemplo (YAML) |
+Ejemplo mínimo:
 
----
-
-## Decision Resilience Engine (DRE)
-
-Especificación de producto **Decision Resilience Engine** (PDR, ICD, riesgos, V&V, arquitectura técnica v1.1 con diagramas Mermaid):
-
-- Índice del paquete PDR: [`docs/pdr/README.md`](docs/pdr/README.md)
-- Arquitectura y metodologías: [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md)
-- Estado código vs especificación: [`docs/DRE_IMPLEMENTATION_STATUS.md`](docs/DRE_IMPLEMENTATION_STATUS.md)
-- Contratos + motor MVP: [`dre/`](dre/README.md)
-
-El runner MAT es el **simulador de dominio**; el DRE incluye aquí **FSM, governance SQLite, skills numéricos y API FastAPI** (MVP). Redis distribuido, copulas completas y niveles causales avanzados están en roadmap en el doc de estado.
-
-**API local (dev):** `pip install -r requirements-dev.txt` y `python scripts/run_dre_api.py --db data/dre_governance.sqlite`  
-Endpoints MVP: `POST /dre/simulate`, `POST /dre/resume`, `GET /dre/health`.
+```bash
+curl -X POST "http://127.0.0.1:8000/dre/simulate" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "run_id": "opt_20260506_000100_v5.0",
+    "data_hash": "sha256:demo",
+    "rng_seed": 7,
+    "variant": "standard"
+  }'
+```
 
 ---
 
-## Fuera del núcleo público
+## Arquitectura y documentos
 
-En `.gitignore`: bases grandes (`data/*.db`), PDFs, `SK-MATHS/`, `multi_agent_trading/`, bots Telegram, generadores `generate_*` en raíz, narrativa comercial suelta en raíz (`PDR_*.md`, etc.), artefactos `optimization/sweep*` / `signal_grid*`. Siguen versionados `contract.yaml`, `contract.json`, `mc_ladder.py`, `verify_run.json` y la documentación técnica bajo `docs/` (incluye `docs/pdr/`).
+- Índice docs: [`docs/README.md`](docs/README.md)
+- PDR DRE (01–05): [`docs/pdr/README.md`](docs/pdr/README.md)
+- Arquitectura técnica DRE v1.1: [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md)
+- Estado implementación vs roadmap: [`docs/DRE_IMPLEMENTATION_STATUS.md`](docs/DRE_IMPLEMENTATION_STATUS.md)
+- Módulo DRE: [`dre/README.md`](dre/README.md)
+
+---
+
+## Estado actual
+
+- Tests: `pytest tests/ -q` (incluye `test_dre_*`).
+- Calidad: `ruff check .`.
+- `main` con pipeline estable y documentación lista para comité técnico.
 
 ---
 
 ## Licencia y seguridad
 
-- Licencia: [LICENSE](LICENSE) (MIT).
-- Reportes de seguridad: [SECURITY.md](SECURITY.md).
-
-Historia de versiones: [CHANGELOG.md](CHANGELOG.md).
+- Licencia: [MIT](LICENSE)
+- Reporte de seguridad: [SECURITY.md](SECURITY.md)
+- Historial: [CHANGELOG.md](CHANGELOG.md)
