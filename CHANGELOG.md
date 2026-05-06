@@ -10,8 +10,11 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - Documento [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md) v1.1 (fundamentos, pipelines, diagramas Mermaid, stack).
 - Implementación **MVP** del motor DRE en [`dre/`](dre/README.md): FSM (`orchestrator/fsm.py`), pipeline (`engine.py`), governance SQLite append-only, skills (forecasting, stress LP, relajación LP timeboxed, drift PSI/Frobenius, causal tier‑1, override), API FastAPI (`api/app.py`), script [`scripts/run_dre_api.py`](scripts/run_dre_api.py).
 - [`docs/DRE_IMPLEMENTATION_STATUS.md`](docs/DRE_IMPLEMENTATION_STATUS.md): mapa especificación ↔ código y backlog.
+- Checkpoints `dre_checkpoints` + `DrePipeline.resume_latest` y endpoint API `POST /dre/resume`.
+- `RedisContextStore` (compatibilidad Redis/fakeredis) y tests de almacenamiento.
+- Integración DRE -> MAT vía `dre/measurement/mat_runner.py` (`measurement.command` MVP).
 - Paquete [`dre/contracts/`](dre/contracts/) (`ExecutionContext` con estados FSM extendidos y `skill_statuses` tipado flexible); tests `tests/test_dre_*.py`.
-- Dependencias de desarrollo: `pydantic`, `scipy`, `fastapi`, `uvicorn`, `httpx`; índice [`docs/README.md`](docs/README.md).
+- Dependencias de desarrollo: `pydantic`, `scipy`, `fastapi`, `uvicorn`, `httpx`, `redis`, `fakeredis`; índice [`docs/README.md`](docs/README.md).
 
 ### Eliminado
 

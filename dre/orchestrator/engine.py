@@ -11,7 +11,7 @@ from dre.skills.causal import propensity_overlap_1d, tier1_gate
 from dre.skills.coherence import validate_coherence
 from dre.skills.forecasting import fit_univariate_series
 from dre.skills.stress import stress_lp_batch
-from dre.storage.memory import MemoryContextStore
+from dre.storage import ContextStore, MemoryContextStore
 
 
 class DrePipeline:
@@ -20,10 +20,10 @@ class DrePipeline:
     def __init__(
         self,
         governance: SqliteGovernanceStore,
-        memory: MemoryContextStore | None = None,
+        memory: ContextStore | None = None,
     ) -> None:
         self.gov = governance
-        self.memory = memory if memory is not None else MemoryContextStore()
+        self.memory: ContextStore = memory if memory is not None else MemoryContextStore()
 
     def advance(self, ctx: ExecutionContext, event: str) -> ExecutionContext:
         before = ctx.current_state
@@ -37,7 +37,20 @@ class DrePipeline:
             payload={},
         )
         self.memory.save(new_ctx)
+        self.gov.save_checkpoint(
+            new_ctx.run_id,
+            new_ctx.current_state,
+            new_ctx.model_dump(mode="json"),
+        )
         return new_ctx
+
+    def resume_latest(self, run_id: str) -> ExecutionContext:
+        ck = self.gov.load_latest_checkpoint(run_id)
+        if ck is None:
+            raise ValueError(f"Sin checkpoint para run_id={run_id}")
+        ctx = ExecutionContext.model_validate(ck["context"])
+        self.memory.save(ctx)
+        return ctx
 
     def simulate_standard_success(
         self, run_id: str, data_hash: str, *, rng_seed: int = 42

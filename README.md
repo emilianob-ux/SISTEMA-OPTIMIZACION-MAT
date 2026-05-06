@@ -85,7 +85,8 @@ Especificación de producto **Decision Resilience Engine** (PDR, ICD, riesgos, V
 
 El runner MAT es el **simulador de dominio**; el DRE incluye aquí **FSM, governance SQLite, skills numéricos y API FastAPI** (MVP). Redis distribuido, copulas completas y niveles causales avanzados están en roadmap en el doc de estado.
 
-**API local (dev):** `pip install -r requirements-dev.txt` y `python scripts/run_dre_api.py --db data/dre_governance.sqlite`
+**API local (dev):** `pip install -r requirements-dev.txt` y `python scripts/run_dre_api.py --db data/dre_governance.sqlite`  
+Endpoints MVP: `POST /dre/simulate`, `POST /dre/resume`, `GET /dre/health`.
 
 ---
 

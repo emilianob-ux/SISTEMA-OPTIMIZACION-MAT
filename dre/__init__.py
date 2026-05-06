@@ -1,1 +1,6 @@
-"""Decision Resilience Engine — reference contracts (ICD), not wired to MAT runner."""
+"""Decision Resilience Engine (MVP)."""
+
+from dre.api import create_app
+from dre.orchestrator import DrePipeline
+
+__all__ = ["DrePipeline", "create_app"]

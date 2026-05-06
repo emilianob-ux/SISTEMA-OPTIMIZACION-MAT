@@ -9,9 +9,10 @@ Implementación **MVP** del DRE alineada con [`docs/pdr/`](../docs/pdr/README.md
 | `contracts/` | Modelos Pydantic ICD (`StressFeedbackPayload`, `ExecutionContext`). |
 | `orchestrator/` | FSM (`fsm.py`), pipeline (`engine.py`). |
 | `governance/` | Ledger SQLite append-only + colisión `run_id`/`data_hash`. |
-| `storage/` | Cache en memoria (sustituto de Redis). |
+| `storage/` | `MemoryContextStore` + `RedisContextStore` (compatible con fakeredis en tests). |
 | `skills/` | Forecasting, stress LP, relajación LP timeboxed, drift, causal tier‑1, override. |
-| `api/` | FastAPI: `POST /dre/simulate`, `GET /dre/health`. |
+| `api/` | FastAPI: `POST /dre/simulate`, `POST /dre/resume`, `GET /dre/health`. |
+| `measurement/` | Puente DRE -> MAT runner (`measurement.command`). |
 | `core/` | Utilidades (`sha256_text`). |
 
 ## Ejecutar API

@@ -39,7 +39,7 @@ def stress_lp_batch(
         min_slack = min(min_slack, float(np.min(slack)))
     n = len(deltas)
     rate = infeas / max(n, 1)
-    if min_slack is float("inf"):
+    if np.isinf(min_slack):
         min_slack = 0.0
     return StressBatchResult(
         n_scenarios=n,

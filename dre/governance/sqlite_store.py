@@ -42,6 +42,13 @@ class SqliteGovernanceStore:
               payload_json TEXT NOT NULL,
               created_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS dre_checkpoints (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              run_id TEXT NOT NULL,
+              state TEXT NOT NULL,
+              context_json TEXT NOT NULL,
+              created_at TEXT NOT NULL
+            );
             """
         )
         self._conn.commit()
@@ -88,6 +95,31 @@ class SqliteGovernanceStore:
             ),
         )
         self._conn.commit()
+
+    def save_checkpoint(self, run_id: str, state: str, context: dict[str, Any]) -> int:
+        now = datetime.now(timezone.utc).isoformat()
+        cur = self._conn.execute(
+            "INSERT INTO dre_checkpoints (run_id, state, context_json, created_at) "
+            "VALUES (?, ?, ?, ?)",
+            (run_id, state, json.dumps(context, separators=(",", ":"), sort_keys=True), now),
+        )
+        self._conn.commit()
+        return int(cur.lastrowid)
+
+    def load_latest_checkpoint(self, run_id: str) -> Optional[dict[str, Any]]:
+        row = self._conn.execute(
+            "SELECT id, state, context_json, created_at FROM dre_checkpoints "
+            "WHERE run_id = ? ORDER BY id DESC LIMIT 1",
+            (run_id,),
+        ).fetchone()
+        if row is None:
+            return None
+        return {
+            "id": int(row["id"]),
+            "state": row["state"],
+            "context": json.loads(row["context_json"]),
+            "created_at": row["created_at"],
+        }
 
     def audit_event_count(self) -> int:
         row = self._conn.execute("SELECT COUNT(*) AS c FROM dre_audit_log").fetchone()

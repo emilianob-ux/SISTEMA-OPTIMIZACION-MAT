@@ -46,3 +46,17 @@ class TestDREApi(unittest.TestCase):
             clash = {**base, "data_hash": "sha256:bbb"}
             res = client.post("/dre/simulate", json=clash)
             self.assertEqual(res.status_code, 409)
+
+    def test_resume_endpoint(self) -> None:
+        app = create_app(governance_db_path=self.db_path)
+        with TestClient(app) as client:
+            payload = {
+                "run_id": "opt_20260505_180000_v5.0",
+                "data_hash": "sha256:ff",
+                "rng_seed": 1,
+                "variant": "standard",
+            }
+            self.assertEqual(client.post("/dre/simulate", json=payload).status_code, 200)
+            rr = client.post("/dre/resume", json={"run_id": payload["run_id"]})
+            self.assertEqual(rr.status_code, 200, rr.text)
+            self.assertEqual(rr.json()["current_state"], "MONITORING")

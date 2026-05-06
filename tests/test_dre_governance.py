@@ -42,3 +42,17 @@ class TestDREGovernance(unittest.TestCase):
         )
         self.assertEqual(gov.audit_event_count(), 1)
         gov.close()
+
+    def test_checkpoint_roundtrip(self) -> None:
+        gov = SqliteGovernanceStore(self.path)
+        cid = gov.save_checkpoint(
+            "opt_20260505_160000_v5.0",
+            "ESCALATED",
+            {"run_id": "opt_20260505_160000_v5.0", "current_state": "ESCALATED"},
+        )
+        self.assertGreater(cid, 0)
+        ck = gov.load_latest_checkpoint("opt_20260505_160000_v5.0")
+        self.assertIsNotNone(ck)
+        assert ck is not None
+        self.assertEqual(ck["state"], "ESCALATED")
+        gov.close()

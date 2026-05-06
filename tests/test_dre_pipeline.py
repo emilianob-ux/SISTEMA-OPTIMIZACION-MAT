@@ -38,3 +38,16 @@ class TestDREPipeline(unittest.TestCase):
         )
         self.assertEqual(ctx.current_state, "MONITORING")
         gov.close()
+
+    def test_resume_latest_checkpoint(self) -> None:
+        gov = SqliteGovernanceStore(self.gov_path)
+        pipe = DrePipeline(gov)
+        done = pipe.simulate_standard_success(
+            "opt_20260505_171000_v5.0",
+            "sha256:bead",
+            rng_seed=5,
+        )
+        resumed = pipe.resume_latest("opt_20260505_171000_v5.0")
+        self.assertEqual(done.current_state, resumed.current_state)
+        self.assertEqual(resumed.current_state, "MONITORING")
+        gov.close()
