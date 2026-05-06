@@ -1,6 +1,6 @@
-# Publica el paquete a PyPI cuando publicás un Release en GitHub.
-# Requisito: Trusted Publisher configurado en PyPI para este repo + workflow.
-# Ver: https://docs.pypi.org/trusted-publishers/
+# Publica wheel + sdist a PyPI (OIDC Trusted Publisher, sin token en GitHub).
+# Prerrequisitos: proyecto pendiente en PyPI + environment `pypi` en GitHub.
+# Guía: docs/PUBLISHING_PYPI.md
 
 name: Publish to PyPI
 
@@ -10,34 +10,74 @@ on:
   workflow_dispatch:
     inputs:
       git_ref:
-        description: "Branch o tag a construir (ej. main o v0.3.0)"
+        description: "Rama o tag (ej. main o v0.3.0)"
         required: false
-        default: "v0.3.0"
+        default: "main"
 
 permissions:
   contents: read
   id-token: write
 
+concurrency:
+  group: pypi-decision-resilience-engine
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # Evita intentos de publicación desde forks (OIDC no coincidirá con PyPI).
+    if: github.repository == 'emilianob-ux/decision-resilience-engine'
     environment:
       name: pypi
-      url: https://pypi.org/p/decision-resilience-engine
+      url: https://pypi.org/project/decision-resilience-engine/
+
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
-          ref: ${{ github.event_name != 'workflow_dispatch' && github.sha || github.event.inputs.git_ref }}
+          ref: >-
+            ${{
+              github.event_name == 'release'
+              && format('refs/tags/{0}', github.event.release.tag_name)
+              || github.event.inputs.git_ref
+            }}
 
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
-      - name: Install build
-        run: pip install build
+      - name: Coincidencia tag ↔ pyproject.toml (solo releases)
+        if: github.event_name == 'release'
+        shell: bash
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+          TAG_VER="${TAG_NAME#v}"
+          PKG="$(python <<'PY'
+          import tomllib
+          from pathlib import Path
+          v = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))["project"]["version"]
+          print(v)
+          PY
+          )"
+          if [ "$TAG_VER" != "$PKG" ]; then
+            echo "::error::El tag del release ('$TAG_NAME' → '$TAG_VER') no coincide con project.version en pyproject.toml ('$PKG')."
+            echo "::error::Usá un tag tipo v${PKG} o cambiá la versión en pyproject.toml antes de volver a publicar."
+            exit 1
+          fi
+          echo "OK: release $TAG_NAME alinea con project.version=$PKG"
 
-      - name: Build sdist and wheel
+      - name: Instalar herramientas de build
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+
+      - name: Construir sdist y wheel
         run: python -m build
 
-      - name: Publish to PyPI
+      - name: Validar artefactos (twine)
+        run: twine check --strict dist/*
+
+      - name: Publicar en PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

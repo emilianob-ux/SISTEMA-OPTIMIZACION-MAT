@@ -69,9 +69,11 @@ Las versiones ahí pueden quedar **rezagadas** respecto a `main` del repo; para 
 
 ### PyPI — nombre nuevo (`decision-resilience-engine`)
 
-El paquete en `pyproject.toml` pasó a llamarse `decision-resilience-engine`; **hasta que publiques la primera wheel** con ese nombre, no habrá proyecto en PyPI. Guía: [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
+El paquete en `pyproject.toml` pasó a llamarse `decision-resilience-engine`; **hasta que publiques la primera wheel** con ese nombre, no habrá proyecto en PyPI.
 
-Cuando exista:
+**Todo listo para el primer upload:** seguí el checklist en orden en [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md) (Trusted Publisher PyPI, environment `pypi` en GitHub, release con tag `v…` alineado a `project.version`; el workflow valida eso automáticamente).
+
+Cuando exista el proyecto en el índice:
 
 ```bash
 pip install decision-resilience-engine

@@ -15,7 +15,7 @@ Research and execution framework focused on **decision resilience and governance
 
 > Experimental software for research. Past performance does not imply future results.
 
-**PyPI:** releases still ship under the legacy name [`sistema-optimizacion-mat`](https://pypi.org/project/sistema-optimizacion-mat/) (`pip install sistema-optimizacion-mat`). The new PyPI project [`decision-resilience-engine`](https://pypi.org/project/decision-resilience-engine/) does not exist until the first publish ([guide](docs/PUBLISHING_PYPI.md)). For latest `main`, use `pip install "git+https://github.com/emilianob-ux/decision-resilience-engine.git"`.
+**PyPI:** releases still ship under the legacy name [`sistema-optimizacion-mat`](https://pypi.org/project/sistema-optimizacion-mat/) (`pip install sistema-optimizacion-mat`). The new PyPI project [`decision-resilience-engine`](https://pypi.org/project/decision-resilience-engine/) appears after the first successful upload—follow the ordered checklist in [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md). For latest `main`, use `pip install "git+https://github.com/emilianob-ux/decision-resilience-engine.git"`.
 
 ## Quick demo
 

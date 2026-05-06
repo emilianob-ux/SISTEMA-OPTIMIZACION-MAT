@@ -4,6 +4,11 @@ Format based on Keep a Changelog.
 
 ## [Unreleased]
 
+### Changed
+
+- Workflow **Publish to PyPI**: validación automática **tag del release ↔ `project.version`**, `twine check --strict` antes de subir, `concurrency`, checkout por `refs/tags/…` en releases; `workflow_dispatch` por defecto **`main`**; job acotado al repo canónico.
+- `docs/PUBLISHING_PYPI.md`: checklist operativo completo (PyPI + GitHub + release), pasos post-publicación y tabla de problemas frecuentes.
+
 ## [0.3.0] - 2026-05-06
 
 ### Changed
