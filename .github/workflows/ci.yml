@@ -45,4 +45,4 @@ jobs:
             | python -c "import json,sys; d=json.load(sys.stdin); assert 'p_win_terminal' in d and 'p_ruin' in d"
 
       - name: Compile check
-        run: python -m compileall -q compound_optimize_runner.py leverage_pi.py features scripts
+        run: python -m compileall -q compound_optimize_runner.py leverage_pi.py features scripts dre

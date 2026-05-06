@@ -4,14 +4,22 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ## [Unreleased]
 
+### Añadido
+
+- Paquete PDR del **Decision Resilience Engine** bajo `docs/pdr/` (01–05).
+- Documento [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md) v1.1 (fundamentos, pipelines, diagramas Mermaid, stack).
+- Paquete [`dre/contracts/`](dre/contracts/) con modelos Pydantic alineados al ICD; tests en `tests/test_dre_contracts.py`.
+- Dependencia de desarrollo `pydantic>=2,<3`; índice [`docs/README.md`](docs/README.md).
+
 ### Eliminado
 
 - Plantillas de issue, plantilla de PR, Dependabot, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `CITATION.cff`, `README.en.md`.
-- Documentación y material de planificación no necesarios para ejecutar el proyecto: `docs/brainstorms/`, `docs/ideation/`, `docs/specs/`, `docs/ENTERPRISE_READINESS.md`, `docs/PUBLISHING_PYPI.md`, `docs/README.md`, `docs/examples/`, `docs/ce-optimize-spec.yaml` (queda `ce-optimize-spec.yaml` en la raíz).
+- Documentación y material de planificación no necesarios para ejecutar el proyecto: `docs/brainstorms/`, `docs/ideation/`, `docs/specs/`, `docs/ENTERPRISE_READINESS.md`, `docs/PUBLISHING_PYPI.md`, `docs/examples/`, `docs/ce-optimize-spec.yaml` (queda `ce-optimize-spec.yaml` en la raíz). El índice `docs/README.md` se reintroduce como tabla de contenidos MAT + DRE.
 
 ### Cambiado
 
 - `README.md` reducido al uso operativo del repo; `docs/tutorial_quickstart.md` sin referencia al README en inglés.
+- Sección **Decision Resilience Engine** en README enlazando PDR + arquitectura técnica + `dre/`.
 
 ## [0.1.4] — 2026-05-06
 

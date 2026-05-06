@@ -74,9 +74,21 @@ Variable opcional: `COMPOUND_OPT_DB=/ruta/a/candles.db`
 
 ---
 
+## Decision Resilience Engine (DRE)
+
+Especificación de producto **Decision Resilience Engine** (PDR, ICD, riesgos, V&V, arquitectura técnica v1.1 con diagramas Mermaid):
+
+- Índice del paquete PDR: [`docs/pdr/README.md`](docs/pdr/README.md)
+- Arquitectura y metodologías: [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md)
+- Contratos Pydantic de referencia (ICD): paquete Python [`dre/`](dre/README.md)
+
+El runner MAT de este repo es el **simulador de dominio**; el DRE completo está descrito en esa documentación para implementación u orchestración aparte.
+
+---
+
 ## Fuera del núcleo público
 
-En `.gitignore`: bases grandes (`data/*.db`), PDFs, `SK-MATHS/`, `multi_agent_trading/`, bots Telegram, generadores `generate_*` en raíz, narrativa PDR/DRE, artefactos `optimization/sweep*` / `signal_grid*`. Siguen versionados `contract.yaml`, `contract.json`, `mc_ladder.py`, `verify_run.json`.
+En `.gitignore`: bases grandes (`data/*.db`), PDFs, `SK-MATHS/`, `multi_agent_trading/`, bots Telegram, generadores `generate_*` en raíz, narrativa comercial suelta en raíz (`PDR_*.md`, etc.), artefactos `optimization/sweep*` / `signal_grid*`. Siguen versionados `contract.yaml`, `contract.json`, `mc_ladder.py`, `verify_run.json` y la documentación técnica bajo `docs/` (incluye `docs/pdr/`).
 
 ---
 
