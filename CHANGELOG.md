@@ -8,8 +8,10 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 - Paquete PDR del **Decision Resilience Engine** bajo `docs/pdr/` (01–05).
 - Documento [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md) v1.1 (fundamentos, pipelines, diagramas Mermaid, stack).
-- Paquete [`dre/contracts/`](dre/contracts/) con modelos Pydantic alineados al ICD; tests en `tests/test_dre_contracts.py`.
-- Dependencia de desarrollo `pydantic>=2,<3`; índice [`docs/README.md`](docs/README.md).
+- Implementación **MVP** del motor DRE en [`dre/`](dre/README.md): FSM (`orchestrator/fsm.py`), pipeline (`engine.py`), governance SQLite append-only, skills (forecasting, stress LP, relajación LP timeboxed, drift PSI/Frobenius, causal tier‑1, override), API FastAPI (`api/app.py`), script [`scripts/run_dre_api.py`](scripts/run_dre_api.py).
+- [`docs/DRE_IMPLEMENTATION_STATUS.md`](docs/DRE_IMPLEMENTATION_STATUS.md): mapa especificación ↔ código y backlog.
+- Paquete [`dre/contracts/`](dre/contracts/) (`ExecutionContext` con estados FSM extendidos y `skill_statuses` tipado flexible); tests `tests/test_dre_*.py`.
+- Dependencias de desarrollo: `pydantic`, `scipy`, `fastapi`, `uvicorn`, `httpx`; índice [`docs/README.md`](docs/README.md).
 
 ### Eliminado
 

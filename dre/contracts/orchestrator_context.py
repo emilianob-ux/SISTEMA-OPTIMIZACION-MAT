@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Dict, List, Literal, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -16,6 +16,9 @@ OrchestratorState = Literal[
     "OPTIMIZING",
     "STRESS_TESTING",
     "BACKPROP",
+    # Escrituras parcial/final de gobernanza (diagrama FSM técnico §5.2)
+    "GOVERNING_PARTIAL",
+    "GOVERNING_FINAL",
     "GOVERNING",
     "OVERRIDE",
     "MONITORING",
@@ -35,6 +38,6 @@ class ExecutionContext(BaseModel):
     override_active: bool = False
     stress_scenarios_ref: Optional[str] = None
     checkpoint_refs: List[str] = Field(default_factory=list)
-    skill_statuses: Dict[str, str] = Field(default_factory=dict)
+    skill_statuses: Dict[str, Any] = Field(default_factory=dict)
     accumulated_warnings: List[str] = Field(default_factory=list)
     last_updated: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

@@ -1,10 +1,32 @@
-# Decision Resilience Engine — código de referencia (contratos ICD)
+# Decision Resilience Engine — código (`dre/`)
 
-Este árbol vive **solo en el repositorio** (no forma parte del wheel PyPI `sistema-optimizacion-mat`; las instalaciones `pip install` desde PyPI siguen siendo solo MAT + dependencias runtime).
+Implementación **MVP** del DRE alineada con [`docs/pdr/`](../docs/pdr/README.md) y [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](../docs/DRE_TECHNICAL_ARCHITECTURE.md). Estado detallado: [`docs/DRE_IMPLEMENTATION_STATUS.md`](../docs/DRE_IMPLEMENTATION_STATUS.md).
 
-Contiene **únicamente** los modelos Pydantic descritos en [docs/pdr/02_Interface_Contracts_ICD.md](../docs/pdr/02_Interface_Contracts_ICD.md). Sirven para:
+## Estructura
 
-- Verificación automática en CI (`tests/test_dre_contracts.py`).
-- Arranque de un futuro servicio FastAPI / orquestador sin acoplarse al runner MAT.
+| Ruta | Rol |
+|------|-----|
+| `contracts/` | Modelos Pydantic ICD (`StressFeedbackPayload`, `ExecutionContext`). |
+| `orchestrator/` | FSM (`fsm.py`), pipeline (`engine.py`). |
+| `governance/` | Ledger SQLite append-only + colisión `run_id`/`data_hash`. |
+| `storage/` | Cache en memoria (sustituto de Redis). |
+| `skills/` | Forecasting, stress LP, relajación LP timeboxed, drift, causal tier‑1, override. |
+| `api/` | FastAPI: `POST /dre/simulate`, `GET /dre/health`. |
+| `core/` | Utilidades (`sha256_text`). |
 
-No incluye Redis, FSM completa ni skills (`ProbabilisticForecasting`, etc.): esa implementación sigue la especificación en [docs/DRE_TECHNICAL_ARCHITECTURE.md](../docs/DRE_TECHNICAL_ARCHITECTURE.md).
+## Ejecutar API
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+python scripts/run_dre_api.py --db data/dre_governance.sqlite
+```
+
+## Tests
+
+```bash
+pytest tests/test_dre_*.py -q
+```
+
+## PyPI
+
+El paquete publicado `sistema-optimizacion-mat` **no incluye** `dre/` en la wheel (sigue siendo solo MAT). El DRE se usa desde **clon del repo** o futuro paquete separado.

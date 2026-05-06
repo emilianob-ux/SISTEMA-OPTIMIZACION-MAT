@@ -80,9 +80,12 @@ Especificación de producto **Decision Resilience Engine** (PDR, ICD, riesgos, V
 
 - Índice del paquete PDR: [`docs/pdr/README.md`](docs/pdr/README.md)
 - Arquitectura y metodologías: [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md)
-- Contratos Pydantic de referencia (ICD): paquete Python [`dre/`](dre/README.md)
+- Estado código vs especificación: [`docs/DRE_IMPLEMENTATION_STATUS.md`](docs/DRE_IMPLEMENTATION_STATUS.md)
+- Contratos + motor MVP: [`dre/`](dre/README.md)
 
-El runner MAT de este repo es el **simulador de dominio**; el DRE completo está descrito en esa documentación para implementación u orchestración aparte.
+El runner MAT es el **simulador de dominio**; el DRE incluye aquí **FSM, governance SQLite, skills numéricos y API FastAPI** (MVP). Redis distribuido, copulas completas y niveles causales avanzados están en roadmap en el doc de estado.
+
+**API local (dev):** `pip install -r requirements-dev.txt` y `python scripts/run_dre_api.py --db data/dre_governance.sqlite`
 
 ---
 

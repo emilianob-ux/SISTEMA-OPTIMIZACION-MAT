@@ -19,7 +19,7 @@ class TestDREContracts(unittest.TestCase):
         self.assertTrue(p.robustness_backpropagation_triggered)
 
     def test_stress_feedback_rejects_mismatch(self) -> None:
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValidationError):
             StressFeedbackPayload(
                 failed_constraints=[],
                 stress_scenarios_failed=[],

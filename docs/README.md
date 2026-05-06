@@ -16,3 +16,4 @@ La visión de producto **Decision Resilience Engine** y el paquete **PDR** viven
 |-----------|-----------|
 | [pdr/README.md](pdr/README.md) | Índice del paquete PDR + relación con MAT. |
 | [DRE_TECHNICAL_ARCHITECTURE.md](DRE_TECHNICAL_ARCHITECTURE.md) | Arquitectura técnica v1.1 (fundamentos, pipelines, Mermaid, stack). |
+| [DRE_IMPLEMENTATION_STATUS.md](DRE_IMPLEMENTATION_STATUS.md) | Qué está implementado en `dre/` vs pendiente. |
