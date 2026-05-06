@@ -444,7 +444,7 @@ def main():
         default="ladder",
         help=(
             "ladder: lev1/lev2/lev3 + t1/t2. pi_ref: PI + L^ff "
-            "(spec docs/specs/2026-04-27-leverage-pid-controller.md)."
+            "(ver configs/pi_ref.example.json y leverage_pi.py)."
         ),
     )
     parser.add_argument(

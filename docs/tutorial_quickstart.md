@@ -2,8 +2,6 @@
 
 Guía paso a paso para tener **tests verdes** y **una salida JSON del runner** en tu máquina. Tiempo típico en laptop moderna: **1–3 minutos** (según red al instalar paquetes).
 
-> Versión en inglés del README del proyecto: [`README.en.md`](../README.en.md).
-
 ## 0. Prerrequisitos
 
 - Python **3.11 o 3.12** (`python --version`).

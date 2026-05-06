@@ -4,13 +4,14 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ## [Unreleased]
 
-### Añadido
+### Eliminado
 
-- `CITATION.cff` para citación del paquete.
-- `docs/ENTERPRISE_READINESS.md` (due diligence ES/EN).
-- Plantilla de issue para documentación (`.github/ISSUE_TEMPLATE/documentation.md`).
-- Badge PyPI y sección de instalación desde PyPI en README (ES/EN).
-- URL PyPI en `[project.urls]` de `pyproject.toml`.
+- Plantillas de issue, plantilla de PR, Dependabot, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `CITATION.cff`, `README.en.md`.
+- Documentación y material de planificación no necesarios para ejecutar el proyecto: `docs/brainstorms/`, `docs/ideation/`, `docs/specs/`, `docs/ENTERPRISE_READINESS.md`, `docs/PUBLISHING_PYPI.md`, `docs/README.md`, `docs/examples/`, `docs/ce-optimize-spec.yaml` (queda `ce-optimize-spec.yaml` en la raíz).
+
+### Cambiado
+
+- `README.md` reducido al uso operativo del repo; `docs/tutorial_quickstart.md` sin referencia al README en inglés.
 
 ## [0.1.4] — 2026-05-06
 
