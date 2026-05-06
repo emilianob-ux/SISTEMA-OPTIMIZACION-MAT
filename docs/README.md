@@ -17,7 +17,14 @@ Este repositorio incluye especificacion + implementacion MVP del DRE.
 | [pdr/README.md](pdr/README.md) | Paquete PDR (01-05) para comite tecnico. |
 | [DRE_TECHNICAL_ARCHITECTURE.md](DRE_TECHNICAL_ARCHITECTURE.md) | Arquitectura tecnica v1.1 (fundamentos, Mermaid, stack). |
 | [DRE_IMPLEMENTATION_STATUS.md](DRE_IMPLEMENTATION_STATUS.md) | Mapa especificacion <-> codigo y backlog. |
-| [LAUNCH_KIT.md](LAUNCH_KIT.md) | Ready-to-post launch copy + 7-day distribution plan. |
+
+## Go-to-market / alcance
+
+| Documento | Contenido |
+|-----------|-----------|
+| [LAUNCH_KIT.md](LAUNCH_KIT.md) | Copy listo para publicar + plan de distribucion. |
+| [OUTREACH_EXECUTION.md](OUTREACH_EXECUTION.md) | Plan 7 dias por canal + KPI framework. |
+| [LAUNCH_DAY_CHECKLIST.md](LAUNCH_DAY_CHECKLIST.md) | Checklist operativo para el dia de lanzamiento. |
 
 Codigo relacionado:
 
