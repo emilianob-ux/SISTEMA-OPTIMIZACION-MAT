@@ -71,13 +71,7 @@ def run(argv: list[str] | None = None) -> int:
         months = iter_year_months(args.start_month, args.end_month)
         for ym in months:
             url = funding_monthly_zip_url(symbol, ym)
-            out = (
-                cache_root
-                / "futures_um"
-                / "funding"
-                / symbol
-                / f"{symbol}_funding_{ym}.csv"
-            )
+            out = cache_root / "futures_um" / "funding" / symbol / f"{symbol}_funding_{ym}.csv"
             try:
                 raw = download_bytes(url, session=session)
             except requests.HTTPError as e:

@@ -2,6 +2,7 @@
 Control de apalancamiento PI + referencia feedforward (spec 2026-04-27).
 Funciones puras; sin dependencias fuera de la stdlib.
 """
+
 from __future__ import annotations
 
 import json
@@ -92,7 +93,10 @@ def leverage_pi_step(E: float, I_prev: float, cfg: Mapping[str, Any]) -> Tuple[f
 
 
 def default_pi_ref_config(t_goal: float = 1000.0) -> Dict[str, Any]:
-    """Valores por defecto alineados al YAML de la spec (T_goal se sobrescribe con --target-equity)."""
+    """Valores por defecto alineados al YAML de la spec.
+
+    T_goal se sobrescribe con --target-equity.
+    """
     out: Dict[str, Any] = {
         "S_mode": 250.0,
         "T_goal": float(t_goal),

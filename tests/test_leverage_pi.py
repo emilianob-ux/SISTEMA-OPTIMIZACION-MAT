@@ -1,4 +1,5 @@
 """Tests unitarios: PI + referencia (spec 2026-04-27)."""
+
 from __future__ import annotations
 
 import math
@@ -57,7 +58,9 @@ class TestLeveragePi(unittest.TestCase):
         I_prev = 0.0
         e = error_e(E, cfg)
         lev, I_next = leverage_pi_step(E, I_prev, cfg)
-        self.assertAlmostEqual(I_next, max(-cfg["pi"]["I_max"], min(cfg["pi"]["I_max"], I_prev + e)))
+        self.assertAlmostEqual(
+            I_next, max(-cfg["pi"]["I_max"], min(cfg["pi"]["I_max"], I_prev + e))
+        )
         self.assertGreaterEqual(lev, 1.0)
 
 

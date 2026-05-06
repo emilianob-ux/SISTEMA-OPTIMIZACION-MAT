@@ -24,17 +24,16 @@ Politica PI (--leverage-policy pi_ref): ver scripts/sweep_pi_ref.py
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import subprocess
 import sys
 import time
-import hashlib
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from itertools import product
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
-
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 RUNNER = REPO_ROOT / "compound_optimize_runner.py"
@@ -78,7 +77,8 @@ PRESETS: Dict[str, Grid] = {
         t2=(380.0, 400.0),
         derisk=(0.0, 0.05, 0.1),
     ),
-    # Objetivo mas cercano (500 USD): umbrales de etapa por debajo de la meta; apalancamiento algo mas agresivo al final.
+    # Objetivo mas cercano (500 USD): umbrales bajo la meta;
+    # apalancamiento algo mas agresivo al final.
     "sprint500": Grid(
         lev1=(6.0, 8.0, 10.0),
         lev2=(10.0, 12.0),
@@ -169,7 +169,8 @@ def _iter_configs(grid: Grid) -> Iterable[Dict[str, Any]]:
         grid.t2,
         grid.derisk,
     ):
-        # Permitir lev1==lev2==lev3 (baseline fijo). Descartar solo escaleras estrictamente crecientes mal ordenadas.
+        # Permitir lev1==lev2==lev3 (baseline fijo).
+        # Descartar escaleras estrictamente crecientes mal ordenadas.
         if lev1 > lev2 + 1e-9 or lev2 > lev3 + 1e-9:
             continue
         yield {
@@ -265,7 +266,11 @@ def main() -> None:
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
 
     for i, cfg in enumerate(configs, start=1):
-        print(f"[{i}/{total}] lev={cfg['lev1']}/{cfg['lev2']}/{cfg['lev3']} t1={cfg['t1']} t2={cfg['t2']} derisk={cfg['derisk']}", flush=True)
+        lev_s = f"{cfg['lev1']}/{cfg['lev2']}/{cfg['lev3']}"
+        print(
+            f"[{i}/{total}] lev={lev_s} t1={cfg['t1']} t2={cfg['t2']} derisk={cfg['derisk']}",
+            flush=True,
+        )
         row = _run_one(
             cfg,
             args.holdout_frac,

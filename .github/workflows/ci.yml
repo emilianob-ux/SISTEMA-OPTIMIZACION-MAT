@@ -30,6 +30,9 @@ jobs:
       - name: Ruff lint
         run: ruff check .
 
+      - name: Ruff format (check)
+        run: ruff format --check .
+
       - name: Synthetic dataset
         run: python scripts/bootstrap_synthetic_candles_db.py
 

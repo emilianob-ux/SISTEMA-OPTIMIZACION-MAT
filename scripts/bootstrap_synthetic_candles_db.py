@@ -43,9 +43,12 @@ def main() -> None:
 
     con = sqlite3.connect(OUT)
     con.execute(
-        "CREATE TABLE candles (timestamp INTEGER, symbol TEXT, open REAL, high REAL, low REAL, close REAL, volume REAL)"
+        "CREATE TABLE candles ("
+        "timestamp INTEGER, symbol TEXT, open REAL, high REAL, "
+        "low REAL, close REAL, volume REAL)"
     )
     con.execute("CREATE TABLE funding (timestamp INTEGER, symbol TEXT, fundingRate REAL)")
+
     def row_pack(o, h, l_, c, v, sym: str):
         rows = []
         for i in range(n):

@@ -34,11 +34,23 @@ Usá tokens de API en lugar de contraseña ([crear token](https://pypi.org/manag
 
 ## Trusted publishing (GitHub → PyPI, sin token en el repo)
 
-Podés configurar **OpenID Connect** entre GitHub y PyPI para que un workflow en Actions publique al crear un Release. Requiere:
+El repo incluye el workflow [`.github/workflows/publish-pypi.yml`](https://github.com/emilianob-ux/SISTEMA-OPTIMIZACION-MAT/blob/main/.github/workflows/publish-pypi.yml): se ejecuta cuando publicás un **Release** en GitHub y sube el artefacto construido con `python -m build`.
 
-- Crear el proyecto en PyPI (nombre disponible).
-- En PyPI: **Manage → Publishing** → añadir “trusted publisher” con este repositorio y el workflow que uses.
+### Pasos en PyPI
+
+1. Creá el proyecto **`sistema-optimizacion-mat`** en [pypi.org](https://pypi.org) (si el nombre está libre).
+2. En **Manage → Publishing** → **Add a new pending publisher**:
+   - **PyPI Project Name:** `sistema-optimizacion-mat`
+   - **Owner:** `emilianob-ux`
+   - **Repository name:** `SISTEMA-OPTIMIZACION-MAT`
+   - **Workflow name:** `publish-pypi.yml`
+   - **Environment name:** `pypi` (debe coincidir con el `environment:` del YAML).
+
+### Pasos en GitHub
+
+1. **Settings → Environments** → crear entorno **`pypi`** (opcional: reglas de aprobación para releases).
+2. Publicá un **Release** (tag, p. ej. `v0.1.3`): el workflow construye y llama a [`pypa/gh-action-pypi-publish`](https://github.com/pypa/gh-action-pypi-publish).
 
 Documentación oficial: [Publishing via Trusted Publishers](https://docs.pypi.org/trusted-publishers/).
 
-No incluimos aquí un workflow fijo porque fallaría hasta que completes ese registro en PyPI; cuando lo tengas, podés copiar el ejemplo de [`pypa/gh-action-pypi-publish`](https://github.com/pypa/gh-action-pypi-publish).
+Hasta que el publisher no esté registrado en PyPI, el job fallará en el paso de publicación (es esperado).

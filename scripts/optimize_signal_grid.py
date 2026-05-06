@@ -14,7 +14,7 @@ Salida: JSON en optimization/ (ruta configurable).
 
 Uso:
   python scripts/optimize_signal_grid.py --db data/candles.db
-  python scripts/optimize_signal_grid.py  # usa COMPOUND_OPT_DB o data/candles.db o hermano BOTS TRADING
+  python scripts/optimize_signal_grid.py  # COMPOUND_OPT_DB / data/candles.db / hermano BOTS TRADING
 """
 
 from __future__ import annotations
@@ -64,7 +64,15 @@ def _run_runner(
     signal_cfg: dict[str, Any] | None,
     extra_runner_args: list[str],
 ) -> dict[str, Any]:
-    cmd = [sys.executable, str(_RUNNER), "--db", db, "--holdout-frac", str(holdout_frac), *extra_runner_args]
+    cmd = [
+        sys.executable,
+        str(_RUNNER),
+        "--db",
+        db,
+        "--holdout-frac",
+        str(holdout_frac),
+        *extra_runner_args,
+    ]
     tmp_path = None
     try:
         if signal_cfg is not None:
@@ -156,7 +164,9 @@ def _build_singles_full() -> list[tuple[str, dict[str, Any]]]:
                     f"dist_ema{p}_ge_{v}",
                     {
                         **V,
-                        "rules": [{"op": "dist_close_ema_ge", "ema_period": p, "value_pct": float(v)}],
+                        "rules": [
+                            {"op": "dist_close_ema_ge", "ema_period": p, "value_pct": float(v)}
+                        ],
                     },
                 )
             )
@@ -207,7 +217,12 @@ def _build_singles_smoke() -> list[tuple[str, dict[str, Any]]]:
             out.append(
                 (
                     f"dist_ema{p}_ge_{v}",
-                    {**V, "rules": [{"op": "dist_close_ema_ge", "ema_period": p, "value_pct": float(v)}]},
+                    {
+                        **V,
+                        "rules": [
+                            {"op": "dist_close_ema_ge", "ema_period": p, "value_pct": float(v)}
+                        ],
+                    },
                 )
             )
     for w in (0.055, 0.07, 0.09):
@@ -216,7 +231,10 @@ def _build_singles_smoke() -> list[tuple[str, dict[str, Any]]]:
         out.append((f"atr_pct_ge_{a}", {**V, "rules": [{"op": "atr_pct_ge", "value": float(a)}]}))
     for fast, slow in ((20, 100), (50, 200)):
         out.append(
-            (f"ema_cross_{fast}_{slow}", {**V, "rules": [{"op": "ema_cross_above", "fast": fast, "slow": slow}]})
+            (
+                f"ema_cross_{fast}_{slow}",
+                {**V, "rules": [{"op": "ema_cross_above", "fast": fast, "slow": slow}]},
+            )
         )
     out.append(("vol_ratio_ge_0.2", {**V, "rules": [{"op": "vol_ratio_ge", "value": 0.2}]}))
     return out
@@ -234,7 +252,17 @@ def _parse_runner_extra(extra: list[str]) -> dict[str, Any]:
     i = 0
     while i < len(extra):
         a = extra[i]
-        if a in ("--lev1", "--lev2", "--lev3", "--t1", "--t2", "--derisk", "--target-equity", "--start-capital", "--kill-equity"):
+        if a in (
+            "--lev1",
+            "--lev2",
+            "--lev3",
+            "--t1",
+            "--t2",
+            "--derisk",
+            "--target-equity",
+            "--start-capital",
+            "--kill-equity",
+        ):
             if i + 1 >= len(extra):
                 break
             key = a[2:].replace("-", "_")
@@ -389,7 +417,8 @@ def _write_markdown_table(payload: dict[str, Any], path: Path) -> None:
     lines = [
         "# Resultados optimización de señales",
         "",
-        "| # | Config | Factible | p_win | p_ruin | p_win HO | p_ruin HO | Δruin OOS−IS | sort_key |",
+        "| # | Config | Factible | p_win | p_ruin | p_win HO | p_ruin HO | "
+        "Δruin OOS−IS | sort_key |",
         "|---|--------|------------|-------|--------|----------|-----------|--------------|----------|",
     ]
     rows = list(payload.get("all_results", []))
@@ -420,11 +449,15 @@ def _write_markdown_table(payload: dict[str, Any], path: Path) -> None:
                 pwh=mget(ho, "p_win_terminal", "—") if wf else "—",
                 prh=mget(ho, "p_ruin", "—") if wf else "—",
                 dr=d_ruin_s if wf else "—",
-                sk=f"{float(r.get('sort_key', 0)):.4f}" if r.get("feasible") else str(r.get("gate_reason", ""))[:24],
+                sk=f"{float(r.get('sort_key', 0)):.4f}"
+                if r.get("feasible")
+                else str(r.get("gate_reason", ""))[:24],
             )
         )
     lines.append("")
-    lines.append("**Nota:** HO = holdout temporal (última fracción temporal). Ver `meta.db` en el JSON.")
+    lines.append(
+        "**Nota:** HO = holdout temporal (última fracción temporal). Ver `meta.db` en el JSON."
+    )
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
@@ -437,12 +470,16 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", default="", help="SQLite candles; vacío = autodetección")
     ap.add_argument("--holdout-frac", type=float, default=0.2)
-    ap.add_argument("--p-ruin-max", type=float, default=0.58, help="Máximo p_ruin (global y holdout).")
+    ap.add_argument(
+        "--p-ruin-max", type=float, default=0.58, help="Máximo p_ruin (global y holdout)."
+    )
     ap.add_argument("--max-delta-ruin", type=float, default=0.12, help="Máx |delta p_ruin OOS-IS|.")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--skip-pairs", action="store_true", help="Solo baseline + singles.")
     ap.add_argument("--max-pairs", type=int, default=36, help="Tope de combinaciones pareadas.")
-    ap.add_argument("--out", default="", help="JSON salida; vacío = optimization/signal_grid_<ts>.json")
+    ap.add_argument(
+        "--out", default="", help="JSON salida; vacío = optimization/signal_grid_<ts>.json"
+    )
     ap.add_argument(
         "--preset",
         choices=("full", "smoke"),
@@ -486,7 +523,9 @@ def main() -> None:
             json.dumps(
                 {
                     "error": "db_not_found",
-                    "hint": "Pasa --db, --allow-bootstrap, o define COMPOUND_OPT_DB / data/candles.db",
+                    "hint": (
+                        "Pasa --db, --allow-bootstrap, o define COMPOUND_OPT_DB / data/candles.db"
+                    ),
                 },
                 indent=2,
             )
@@ -541,7 +580,8 @@ def main() -> None:
         }
 
     print(
-        f"DB={db} jobs={len(jobs)} workers={args.workers} in_process={args.in_process} preset={args.preset}",
+        f"DB={db} jobs={len(jobs)} workers={args.workers} "
+        f"in_process={args.in_process} preset={args.preset}",
         file=sys.stderr,
     )
     if args.in_process:
@@ -627,14 +667,23 @@ def main() -> None:
     out_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     table_path = out_path.with_name(out_path.stem + "_table.md")
     _write_markdown_table(payload, table_path)
-    print(json.dumps({"wrote": str(out_path), "table": str(table_path), "n_best_listed": len(ranked[:15])}, indent=2))
+    print(
+        json.dumps(
+            {"wrote": str(out_path), "table": str(table_path), "n_best_listed": len(ranked[:15])},
+            indent=2,
+        )
+    )
 
     if ranked:
         best = ranked[0]
         best_cfg_path = out_path.with_name(out_path.stem + "_best_config.json")
         if best.get("config") is not None:
             best_cfg_path.write_text(json.dumps(best["config"], indent=2), encoding="utf-8")
-            print(json.dumps({"best_config_written": str(best_cfg_path), "label": best["label"]}, indent=2))
+            print(
+                json.dumps(
+                    {"best_config_written": str(best_cfg_path), "label": best["label"]}, indent=2
+                )
+            )
 
 
 if __name__ == "__main__":

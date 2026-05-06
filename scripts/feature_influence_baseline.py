@@ -27,7 +27,11 @@ from compound_optimize_runner import (  # noqa: E402
     load_data,
     sim_window,
 )
-from features.indicators import column_names_for_importance, compute_feature_pack, pack_to_matrix  # noqa: E402
+from features.indicators import (  # noqa: E402
+    column_names_for_importance,
+    compute_feature_pack,
+    pack_to_matrix,
+)
 from features.loaders import load_btc_eth_series  # noqa: E402
 
 
@@ -94,7 +98,8 @@ def main() -> None:
 
     order = np.argsort(-np.abs(beta))
     ranked = [
-        {"feature": colnames[j], "ridge_beta": float(beta[j]), "corr_y": corr[j]} for j in order[:25]
+        {"feature": colnames[j], "ridge_beta": float(beta[j]), "corr_y": corr[j]}
+        for j in order[:25]
     ]
     out = {
         "n_windows": nw,

@@ -2,6 +2,19 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [0.1.3] — 2026-04-27
+
+### Añadido
+
+- Workflow `.github/workflows/publish-pypi.yml` para publicar en PyPI al crear un **Release** (trusted publishing).
+- Hook `ruff-format` en `.pre-commit-config.yaml`.
+
+### Cambiado
+
+- Formato con `ruff format` en el código Python versionado; imports ordenados (`I001`); líneas largas (`E501`) corregidas donde aplicaba.
+- Se eliminan los ignores globales `E501`/`I001` en Ruff; permanece exclusión local `E701`/`E702` solo en `compound_optimize_runner.py`.
+- `pyproject.toml`: licencia SPDX `MIT`; CI ejecuta `ruff format --check .`; `.gitignore` incluye `dist/` y `build/`.
+
 ## [0.1.2] — 2026-04-27
 
 ### Añadido
@@ -14,7 +27,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 - Plantillas de issue: etiquetas por defecto `bug` / `enhancement`.
 - Badges de Python y licencia en README (ES/EN).
-- Reglas Ruff pragmáticas: `E501`/`I001` ignorados por ahora para no masificar el árbol; `compound_optimize_runner.py` sigue con exclusión de `E701`/`E702`.
+- Primera pasada Ruff en CI; `compound_optimize_runner.py` mantiene exclusión `E701`/`E702` (ver endurecimiento en 0.1.3).
 
 ### Comunidad (GitHub)
 

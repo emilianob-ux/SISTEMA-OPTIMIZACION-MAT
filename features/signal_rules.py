@@ -17,7 +17,9 @@ def _finite(x: float) -> bool:
     return bool(np.isfinite(x))
 
 
-def apply_rules_to_pack(pack: dict[str, np.ndarray], rules: list[dict[str, Any]], logic: str) -> np.ndarray:
+def apply_rules_to_pack(
+    pack: dict[str, np.ndarray], rules: list[dict[str, Any]], logic: str
+) -> np.ndarray:
     """
     logic: 'all' (AND) o 'any' (OR).
     Cada regla debe cumplirse en esa barra para pasar (AND) o al menos una (OR).

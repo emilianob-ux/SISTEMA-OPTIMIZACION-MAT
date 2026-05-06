@@ -18,8 +18,8 @@ from __future__ import annotations
 
 import argparse
 import copy
-import json
 import hashlib
+import json
 import subprocess
 import sys
 import time
@@ -158,12 +158,19 @@ def main() -> None:
     ap.add_argument("--target-equity", type=float, default=1000.0)
     ap.add_argument("--start-capital", type=float, default=140.0)
     ap.add_argument("--kill-equity", type=float, default=70.0)
-    ap.add_argument("--t1", type=float, default=280.0, help="Solo métricas condicionales / vault trigger (runner).")
+    ap.add_argument(
+        "--t1",
+        type=float,
+        default=280.0,
+        help="Solo métricas condicionales / vault trigger (runner).",
+    )
     ap.add_argument("--t2", type=float, default=400.0)
     ap.add_argument(
         "--sweep-w",
         action="store_true",
-        help="Añade w_a=w_b en {12,15,18} al producto (27 corridas con grid K_p x K_i por defecto).",
+        help=(
+            "Añade w_a=w_b en {12,15,18} al producto (27 corridas con grid K_p x K_i por defecto)."
+        ),
     )
     ap.add_argument("--out-dir", type=str, default=str(OUT_DIR))
     args = ap.parse_args()
@@ -219,13 +226,15 @@ def main() -> None:
         "base_config": str(BASE_CONFIG) if BASE_CONFIG.is_file() else None,
     }
     try:
-        manifest["git_head"] = (
-            subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), text=True, stderr=subprocess.DEVNULL)
-            .strip()
-        )
+        manifest["git_head"] = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=str(REPO_ROOT), text=True, stderr=subprocess.DEVNULL
+        ).strip()
     except Exception:
         manifest["git_head"] = None
-    db_candidates = [REPO_ROOT / "data" / "candles.db", (REPO_ROOT.parent / "BOTS TRADING" / "data" / "candles.db").resolve()]
+    db_candidates = [
+        REPO_ROOT / "data" / "candles.db",
+        (REPO_ROOT.parent / "BOTS TRADING" / "data" / "candles.db").resolve(),
+    ]
     for dbp in db_candidates:
         if dbp.is_file():
             h = hashlib.sha256()
@@ -240,10 +249,9 @@ def main() -> None:
 
     rows: List[Dict[str, Any]] = []
     for i, cfg in enumerate(combos, start=1):
-        print(
-            f"[{i}/{total}] K_p={cfg['pi']['K_p']} K_i={cfg['pi']['K_i']} w_a=w_b={cfg['L_ff']['w_a']}",
-            flush=True,
-        )
+        kp, ki = cfg["pi"]["K_p"], cfg["pi"]["K_i"]
+        w_ab = cfg["L_ff"]["w_a"]
+        print(f"[{i}/{total}] K_p={kp} K_i={ki} w_a=w_b={w_ab}", flush=True)
         row = _run_one(
             cfg,
             args.holdout_frac,

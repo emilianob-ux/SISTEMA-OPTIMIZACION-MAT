@@ -21,7 +21,9 @@ def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--db", required=True)
     p.add_argument("configs", nargs="+", help="Archivos JSON de reglas")
-    p.add_argument("--extra", nargs="*", default=[], help="Args extra al runner, ej. --holdout-frac 0.2")
+    p.add_argument(
+        "--extra", nargs="*", default=[], help="Args extra al runner, ej. --holdout-frac 0.2"
+    )
     args = p.parse_args()
     rows = []
     for cfg in args.configs:

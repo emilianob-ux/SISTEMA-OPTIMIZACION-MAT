@@ -13,10 +13,7 @@ def funding_monthly_zip_url(symbol: str, year_month: str) -> str:
     /data/futures/um/monthly/fundingRate/{SYMBOL}/{SYMBOL}-fundingRate-{YYYY-MM}.zip
     """
     s = symbol.upper()
-    return (
-        f"{BASE_HOST}/data/futures/um/monthly/fundingRate/"
-        f"{s}/{s}-fundingRate-{year_month}.zip"
-    )
+    return f"{BASE_HOST}/data/futures/um/monthly/fundingRate/{s}/{s}-fundingRate-{year_month}.zip"
 
 
 def klines_monthly_zip_url(symbol: str, interval: str, year_month: str) -> str:
@@ -28,10 +25,7 @@ def klines_monthly_zip_url(symbol: str, interval: str, year_month: str) -> str:
     """
     s = symbol.upper()
     iv = interval
-    return (
-        f"{BASE_HOST}/data/futures/um/monthly/klines/{s}/{iv}/"
-        f"{s}-{iv}-{year_month}.zip"
-    )
+    return f"{BASE_HOST}/data/futures/um/monthly/klines/{s}/{iv}/{s}-{iv}-{year_month}.zip"
 
 
 def klines_daily_zip_url(symbol: str, interval: str, year_month_day: str) -> str:
@@ -43,7 +37,4 @@ def klines_daily_zip_url(symbol: str, interval: str, year_month_day: str) -> str
     """
     s = symbol.upper()
     iv = interval
-    return (
-        f"{BASE_HOST}/data/futures/um/daily/klines/{s}/{iv}/"
-        f"{s}-{iv}-{year_month_day}.zip"
-    )
+    return f"{BASE_HOST}/data/futures/um/daily/klines/{s}/{iv}/{s}-{iv}-{year_month_day}.zip"

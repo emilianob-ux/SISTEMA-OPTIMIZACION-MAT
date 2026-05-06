@@ -1,0 +1,35 @@
+# Publica el paquete a PyPI cuando publicás un Release en GitHub.
+# Requisito: Trusted Publisher configurado en PyPI para este repo + workflow.
+# Ver: https://docs.pypi.org/trusted-publishers/
+
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/sistema-optimizacion-mat
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install build
+        run: pip install build
+
+      - name: Build sdist and wheel
+        run: python -m build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

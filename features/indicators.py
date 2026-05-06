@@ -64,7 +64,9 @@ def true_range(high: np.ndarray, low: np.ndarray, close: np.ndarray) -> np.ndarr
     return tr
 
 
-def atr_wilder(high: np.ndarray, low: np.ndarray, close: np.ndarray, period: int = 14) -> np.ndarray:
+def atr_wilder(
+    high: np.ndarray, low: np.ndarray, close: np.ndarray, period: int = 14
+) -> np.ndarray:
     tr = true_range(high, low, close)
     return _wilder_smooth(tr, period)
 
@@ -76,7 +78,9 @@ def atr_close_proxy(close: np.ndarray, period: int = 14) -> np.ndarray:
     return _wilder_smooth(r, period)
 
 
-def adx_wilder(high: np.ndarray, low: np.ndarray, close: np.ndarray, period: int = 14) -> np.ndarray:
+def adx_wilder(
+    high: np.ndarray, low: np.ndarray, close: np.ndarray, period: int = 14
+) -> np.ndarray:
     """ADX clásico [0,100]. Requiere high/low válidos."""
     n = len(close)
     plus_dm = np.zeros(n, dtype=np.float64)
@@ -98,7 +102,9 @@ def adx_wilder(high: np.ndarray, low: np.ndarray, close: np.ndarray, period: int
     return adx
 
 
-def bollinger(close: np.ndarray, period: int = 20, num_std: float = 2.0) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+def bollinger(
+    close: np.ndarray, period: int = 20, num_std: float = 2.0
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """mid, upper, lower, width=(u-l)/mid, pctb posición en banda [0,1] si mid>0."""
     mid = sma(close, period)
     n = len(close)
@@ -233,7 +239,9 @@ def column_names_for_importance() -> list[str]:
     return names
 
 
-def pack_to_matrix(pack: dict[str, np.ndarray], indices: np.ndarray, colnames: list[str]) -> np.ndarray:
+def pack_to_matrix(
+    pack: dict[str, np.ndarray], indices: np.ndarray, colnames: list[str]
+) -> np.ndarray:
     """Shape (len(indices), len(colnames)); NaN -> 0.0 para regresión."""
     m = len(indices)
     d = len(colnames)

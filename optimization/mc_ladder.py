@@ -34,7 +34,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Tuple
 
-
 ROOT = Path(__file__).resolve().parent
 CONTRACT_JSON = ROOT / "contract.json"
 
@@ -282,9 +281,7 @@ def main() -> None:
     def lev_baseline(_: float) -> float:
         return l0
 
-    shock_matrix = precompute_gaussian_shocks(
-        n_paths=n_paths, max_steps=max_steps, seed=seed
-    )
+    shock_matrix = precompute_gaussian_shocks(n_paths=n_paths, max_steps=max_steps, seed=seed)
 
     base_counts = run_mc(
         n_paths=n_paths,
@@ -327,7 +324,10 @@ def main() -> None:
             "target_ruin": args.calibration_target_ruin,
             "calibration_error": calib_meta["calibration_error"],
             "calibration_rates_subsample": calib_meta["rates"],
-            "note": "Calibracion con min(n_paths,6000) trayectorias; baseline+rejilla usan shock_matrix CRN.",
+            "note": (
+                "Calibracion con min(n_paths,6000) trayectorias; "
+                "baseline+rejilla usan shock_matrix CRN."
+            ),
         },
         "baseline_full_n": {
             "n_paths": n_paths,
@@ -338,9 +338,9 @@ def main() -> None:
         "top_by_p_win": sorted(rows, key=lambda r: r["p_win"], reverse=True)[:12],
         "disclaimer": (
             "Surrogate lognormal con barreras; no sustituye hydra.backtest con funding real. "
-            "Metodo: rejilla + MC + gate p_ruin. "
-            "Post-calibracion, baseline y ladder comparten la misma matriz Z por (trayectoria, paso) "
-            "y el mismo seed/n_paths del contrato; la calibracion mu/sigma no usa esa matriz."
+            "Metodo: rejilla + MC + gate p_ruin. Post-calibracion, baseline y ladder comparten "
+            "la misma matriz Z por (trayectoria, paso) y el mismo seed/n_paths del contrato; "
+            "la calibracion mu/sigma no usa esa matriz."
         ),
         "wall_time_ms": int((time.perf_counter() - t0) * 1000),
     }
