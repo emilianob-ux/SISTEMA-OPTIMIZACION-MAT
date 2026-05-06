@@ -10,11 +10,12 @@ Research and execution framework focused on **decision resilience and governance
 [![CI](https://github.com/emilianob-ux/decision-resilience-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/decision-resilience-engine/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![PyPI — pending](https://img.shields.io/badge/PyPI-first%20release%20pending-lightgrey)](docs/PUBLISHING_PYPI.md)
+[![PyPI legacy](https://img.shields.io/pypi/v/sistema-optimizacion-mat.svg?label=PyPI%20%28legacy%29)](https://pypi.org/project/sistema-optimizacion-mat/)
+[![PyPI new name](https://img.shields.io/badge/decision--resilience--engine-on%20PyPI-pending-lightgrey)](docs/PUBLISHING_PYPI.md)
 
 > Experimental software for research. Past performance does not imply future results.
 
-**PyPI:** there is no published package yet; use `pip install "git+https://github.com/emilianob-ux/decision-resilience-engine.git"` until the first release ([publishing guide](docs/PUBLISHING_PYPI.md)).
+**PyPI:** releases still ship under the legacy name [`sistema-optimizacion-mat`](https://pypi.org/project/sistema-optimizacion-mat/) (`pip install sistema-optimizacion-mat`). The new PyPI project [`decision-resilience-engine`](https://pypi.org/project/decision-resilience-engine/) does not exist until the first publish ([guide](docs/PUBLISHING_PYPI.md)). For latest `main`, use `pip install "git+https://github.com/emilianob-ux/decision-resilience-engine.git"`.
 
 ## Quick demo
 

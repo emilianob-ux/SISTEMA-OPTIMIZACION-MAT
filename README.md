@@ -10,7 +10,8 @@ Framework de investigacion y ejecucion centrado en **resiliencia y gobernanza de
 [![CI](https://github.com/emilianob-ux/decision-resilience-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/emilianob-ux/decision-resilience-engine/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%20|%203.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![PyPI — pendiente](https://img.shields.io/badge/PyPI-primer%20release%20pendiente-lightgrey)](docs/PUBLISHING_PYPI.md)
+[![PyPI legacy](https://img.shields.io/pypi/v/sistema-optimizacion-mat.svg?label=PyPI%20%28legacy%29)](https://pypi.org/project/sistema-optimizacion-mat/)
+[![PyPI nuevo nombre](https://img.shields.io/badge/decision--resilience--engine-en%20PyPI-pendiente-lightgrey)](docs/PUBLISHING_PYPI.md)
 
 > **Aviso legal:** software experimental para investigacion. El rendimiento pasado no garantiza resultados futuros.
 
@@ -56,21 +57,33 @@ curl -X POST "http://127.0.0.1:8000/dre/resume" \
 
 ## Instalación
 
-### PyPI (cuando exista la primera publicación)
+### PyPI — nombre anterior (sigue publicado)
 
-El nombre del proyecto en PyPI será `decision-resilience-engine`, pero **todavía no hay ninguna versión subida** (por eso el indicador gris enlaza a [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md)). Cuando publiques la primera wheel, podrás usar:
+Este proyecto se publicó en PyPI históricamente como **[`sistema-optimizacion-mat`](https://pypi.org/project/sistema-optimizacion-mat/)**. Es la razón por la que el badge “legacy” muestra versión y el enlace **[`decision-resilience-engine`](https://pypi.org/project/decision-resilience-engine/)** todavía no existe en el índice de PyPI.
+
+```bash
+pip install sistema-optimizacion-mat
+```
+
+Las versiones ahí pueden quedar **rezagadas** respecto a `main` del repo; para lo último usá GitHub (abajo) o esperá la primera release bajo el nombre nuevo.
+
+### PyPI — nombre nuevo (`decision-resilience-engine`)
+
+El paquete en `pyproject.toml` pasó a llamarse `decision-resilience-engine`; **hasta que publiques la primera wheel** con ese nombre, no habrá proyecto en PyPI. Guía: [`docs/PUBLISHING_PYPI.md`](docs/PUBLISHING_PYPI.md).
+
+Cuando exista:
 
 ```bash
 pip install decision-resilience-engine
 ```
 
-La wheel incluirá los módulos **MAT** definidos en `pyproject.toml`; el código **`dre/`** sigue pensado para usarse desde **clon del repositorio**.
-
-### Mientras tanto (instalar desde GitHub)
+### Desde GitHub (recomendado si querés el código actual)
 
 ```bash
 pip install "git+https://github.com/emilianob-ux/decision-resilience-engine.git"
 ```
+
+La wheel nueva incluirá los módulos **MAT** del `pyproject.toml`; el código **`dre/`** sigue pensado para usarse desde **clon del repositorio**.
 
 ### Entorno completo del repo (DRE + MAT)
 

@@ -27,7 +27,9 @@ Recomendado: proteger el environment (solo vos como revisor) si querés confirma
 
 ## 4. Migración desde `sistema-optimizacion-mat`
 
-El paquete anterior en PyPI **no se renombra solo**. Este repo usa el nombre nuevo `decision-resilience-engine`. Podés dejar el proyecto viejo como archivo o publicar una última versión con README que redirija al nuevo nombre.
+El proyecto **sigue visible en PyPI** como [`sistema-optimizacion-mat`](https://pypi.org/project/sistema-optimizacion-mat/). PyPI **no renombra** un proyecto existente: por eso el badge que apunta a [`decision-resilience-engine`](https://pypi.org/project/decision-resilience-engine/) falla hasta la **primera publicación** bajo el nombre nuevo.
+
+Este repo ya usa `name = "decision-resilience-engine"` en `pyproject.toml`. Podés dejar el proyecto viejo como archivo o publicar una última versión con README que redirija al nuevo nombre.
 
 ## Referencias
 
