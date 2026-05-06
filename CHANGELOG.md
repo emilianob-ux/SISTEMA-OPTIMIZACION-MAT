@@ -1,85 +1,61 @@
 # Changelog
 
-Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
+Format based on Keep a Changelog.
 
 ## [Unreleased]
 
-### Añadido
+## [0.2.0] - 2026-05-06
 
-- Paquete PDR del **Decision Resilience Engine** bajo `docs/pdr/` (01–05).
-- Documento [`docs/DRE_TECHNICAL_ARCHITECTURE.md`](docs/DRE_TECHNICAL_ARCHITECTURE.md) v1.1 (fundamentos, pipelines, diagramas Mermaid, stack).
-- Implementación **MVP** del motor DRE en [`dre/`](dre/README.md): FSM (`orchestrator/fsm.py`), pipeline (`engine.py`), governance SQLite append-only, skills (forecasting, stress LP, relajación LP timeboxed, drift PSI/Frobenius, causal tier‑1, override), API FastAPI (`api/app.py`), script [`scripts/run_dre_api.py`](scripts/run_dre_api.py).
-- [`docs/DRE_IMPLEMENTATION_STATUS.md`](docs/DRE_IMPLEMENTATION_STATUS.md): mapa especificación ↔ código y backlog.
-- Checkpoints `dre_checkpoints` + `DrePipeline.resume_latest` y endpoint API `POST /dre/resume`.
-- `RedisContextStore` (compatibilidad Redis/fakeredis) y tests de almacenamiento.
-- Integración DRE -> MAT vía `dre/measurement/mat_runner.py` (`measurement.command` MVP).
-- Paquete [`dre/contracts/`](dre/contracts/) (`ExecutionContext` con estados FSM extendidos y `skill_statuses` tipado flexible); tests `tests/test_dre_*.py`.
-- Dependencias de desarrollo: `pydantic`, `scipy`, `fastapi`, `uvicorn`, `httpx`, `redis`, `fakeredis`; índice [`docs/README.md`](docs/README.md).
+### Added
 
-### Eliminado
+- Decision Resilience Engine (DRE) MVP under `dre/`.
+- DRE API endpoints: `POST /dre/simulate`, `POST /dre/resume`, `GET /dre/health`.
+- SQLite governance checkpoints and `DrePipeline.resume_latest`.
+- Redis-compatible context store (`RedisContextStore`) plus fakeredis tests.
+- MAT bridge command: `dre/measurement/mat_runner.py`.
+- Full PDR package in `docs/pdr/` and technical architecture doc.
+- `docs/DRE_IMPLEMENTATION_STATUS.md` mapping spec to code.
 
-- Plantillas de issue, plantilla de PR, Dependabot, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `CITATION.cff`, `README.en.md`.
-- Documentación y material de planificación no necesarios para ejecutar el proyecto: `docs/brainstorms/`, `docs/ideation/`, `docs/specs/`, `docs/ENTERPRISE_READINESS.md`, `docs/PUBLISHING_PYPI.md`, `docs/examples/`, `docs/ce-optimize-spec.yaml` (queda `ce-optimize-spec.yaml` en la raíz). El índice `docs/README.md` se reintroduce como tabla de contenidos MAT + DRE.
+### Changed
 
-### Cambiado
+- README and docs index refreshed for MAT + DRE public presentation.
+- Dev dependencies expanded with `scipy`, `fastapi`, `uvicorn`, `httpx`, `redis`, `fakeredis`.
 
-- `README.md` reducido al uso operativo del repo; `docs/tutorial_quickstart.md` sin referencia al README en inglés.
-- Sección **Decision Resilience Engine** en README enlazando PDR + arquitectura técnica + `dre/`.
+### Removed
 
-## [0.1.4] — 2026-05-06
+- Non-essential OSS/community template files removed earlier in this cycle.
 
-### Cambiado
+## [0.1.4] - 2026-05-06
 
-- Workflow PyPI: disparador manual `workflow_dispatch` con input `git_ref` y checkout seguro según evento.
-- Docs `PUBLISHING_PYPI.md`: enlace a la página de *account publishing* de PyPI y cómo recrear el entorno `pypi` en GitHub vía `gh api`.
+### Changed
 
-## [0.1.3] — 2026-04-27
+- PyPI workflow supports `workflow_dispatch` with `git_ref` checkout.
 
-### Añadido
+## [0.1.3] - 2026-04-27
 
-- Workflow `.github/workflows/publish-pypi.yml` para publicar en PyPI al crear un **Release** (trusted publishing).
-- Hook `ruff-format` en `.pre-commit-config.yaml`.
+### Added
 
-### Cambiado
+- PyPI release workflow (`publish-pypi.yml`).
+- `ruff-format` pre-commit hook.
 
-- Formato con `ruff format` en el código Python versionado; imports ordenados (`I001`); líneas largas (`E501`) corregidas donde aplicaba.
-- Se eliminan los ignores globales `E501`/`I001` en Ruff; permanece exclusión local `E701`/`E702` solo en `compound_optimize_runner.py`.
-- `pyproject.toml`: licencia SPDX `MIT`; CI ejecuta `ruff format --check .`; `.gitignore` incluye `dist/` y `build/`.
+### Changed
 
-## [0.1.2] — 2026-04-27
+- Repo-wide formatting and stricter Ruff config.
 
-### Añadido
+## [0.1.2] - 2026-04-27
 
-- Configuración Ruff (`pyproject.toml`), paso `ruff check` en CI y `.pre-commit-config.yaml` (hook `ruff`).
-- `docs/README.md` como índice de documentación.
-- Dependencias de desarrollo: `ruff`, `pre-commit`.
+### Added
 
-### Cambiado
+- Ruff config, CI lint step, pre-commit baseline.
 
-- Plantillas de issue: etiquetas por defecto `bug` / `enhancement`.
-- Badges de Python y licencia en README (ES/EN).
-- Primera pasada Ruff en CI; `compound_optimize_runner.py` mantiene exclusión `E701`/`E702` (ver endurecimiento en 0.1.3).
+## [0.1.1] - 2026-04-27
 
-### Comunidad (GitHub)
+### Added
 
-- Discussions habilitadas en el repositorio.
+- English README and quickstart/publishing docs.
 
-## [0.1.1] — 2026-04-27
+## [0.1.0] - 2026-04-28
 
-### Añadido
+### Added
 
-- `README.en.md`, `docs/tutorial_quickstart.md`, `docs/PUBLISHING_PYPI.md`.
-
-### Cambiado
-
-- CI: `actions/checkout@v6`, `actions/setup-python@v6` (runtime Node 24).
-
-## [0.1.0] — 2026-04-28
-
-### Añadido
-
-- README orientado a reproducibilidad, CI, dataset documentado.
-- Reglas de señal JSON (`--signal-config`), optimizador por rejilla (`scripts/optimize_signal_grid.py`).
-- Tests (`pytest`) y workflow GitHub Actions.
-- Dependabot para dependencias pip y GitHub Actions.
-- Metadatos del proyecto en `pyproject.toml`.
+- Initial MAT backtesting engine, tests, CI, and docs.

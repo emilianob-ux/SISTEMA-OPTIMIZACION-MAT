@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sistema-optimizacion-mat"
-version = "0.1.4"
-description = "Backtest compuesto BTC/ETH (futuros USDT) con ventanas deslizantes, funding y optimización de señales opcional."
+version = "0.2.0"
+description = "MAT backtesting engine (BTC/ETH futures) plus DRE MVP orchestration components."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
@@ -47,8 +47,8 @@ PyPI = "https://pypi.org/project/sistema-optimizacion-mat/"
 [tool.setuptools]
 py-modules = ["compound_optimize_runner", "leverage_pi"]
 
-# `dre/` es código de referencia del ICD en el repo y tests (requiere pydantic en dev);
-# no se incluye en la distribución PyPI del paquete MAT principal.
+# `dre/` es c??digo de referencia del ICD en el repo y tests (requiere pydantic en dev);
+# no se incluye en la distribuci??n PyPI del paquete MAT principal.
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["features*"]
@@ -61,5 +61,5 @@ line-length = 100
 select = ["E", "F", "I"]
 
 [tool.ruff.lint.per-file-ignores]
-# Estilo compacto heredado del runner principal; migración gradual posible.
+# Estilo compacto heredado del runner principal; migraci??n gradual posible.
 "compound_optimize_runner.py" = ["E701", "E702"]
