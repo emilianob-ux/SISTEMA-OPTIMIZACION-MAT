@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sistema-optimizacion-mat"
-version = "0.1.3"
+version = "0.1.4"
 description = "Backtest compuesto BTC/ETH (futuros USDT) con ventanas deslizantes, funding y optimización de señales opcional."
 readme = "README.md"
 license = "MIT"

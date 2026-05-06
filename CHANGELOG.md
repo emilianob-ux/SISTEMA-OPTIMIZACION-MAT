@@ -2,6 +2,13 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [0.1.4] — 2026-05-06
+
+### Cambiado
+
+- Workflow PyPI: disparador manual `workflow_dispatch` con input `git_ref` y checkout seguro según evento.
+- Docs `PUBLISHING_PYPI.md`: enlace a la página de *account publishing* de PyPI y cómo recrear el entorno `pypi` en GitHub vía `gh api`.
+
 ## [0.1.3] — 2026-04-27
 
 ### Añadido
